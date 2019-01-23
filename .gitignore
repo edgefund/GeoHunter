@@ -1,5 +1,2 @@
 .DS_Store
-
-# Expo Scanner
-
-ExpoScanner/node_modules/
+**/node_modules/
