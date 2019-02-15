@@ -1,2 +1,10 @@
+<<<<<<< HEAD
 .DS_Store
 **/node_modules/
+=======
+node_modules
+build
+app/src/contracts
+.DS_Store
+.secret
+>>>>>>> Truffle unbox drizzle
