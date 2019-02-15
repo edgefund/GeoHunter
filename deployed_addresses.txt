@@ -1,0 +1,8 @@
+The contract has been depolyed on the Rinkeby test net at the following address:
+0x
+
+The source code has been verified on Etherscan.
+
+Etherscan contract link: https://rinkeby.etherscan.io/address/0x
+
+Etherscan verified source code: https://rinkeby.etherscan.io/address/0x
