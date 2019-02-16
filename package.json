@@ -41,6 +41,7 @@
     "recursive-readdir": "2.1.0",
     "strip-ansi": "3.0.1",
     "style-loader": "0.13.1",
+    "truffle": "^5.0.4",
     "truffle-contract": "^1.1.8",
     "url-loader": "0.5.7",
     "webpack": "1.14.0",
@@ -66,6 +67,7 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
+    "prepare": "truffle compile",
     "test": "node scripts/test.js --env=jsdom"
   },
   "jest": {
