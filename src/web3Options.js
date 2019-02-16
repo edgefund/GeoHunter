@@ -1,8 +1,6 @@
-require('dotenv').config()
 let SimpleStorage = require('../build/contracts/SimpleStorage.json')
 
 let web3Options = {
-  providerEndpoint: process.env.PROVIDER_ENDPOINT,
   contracts: [
       {
         name: `SimpleStorage`,

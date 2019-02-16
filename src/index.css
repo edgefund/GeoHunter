@@ -1,5 +1,40 @@
-body {
-  margin: 0;
+@import url('https://fonts.googleapis.com/css?family=Lato:300i,400,700,900');
+/* @import url('https://fonts.googleapis.com/css?family=PT+Sans:400,700i'); */
+
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
+/* <!-- Perform a style reset fpr the entire app --> */
+
+*, *::after, *::before {
   padding: 0;
-  font-family: sans-serif;
+  margin: 0;
+  box-sizing: inherit;
+  color: inherit;
+}
+
+html {
+  /* With usual default font-size of 16px, this will make 1rem = 10px  */
+  font-size: 62.5%;
+}
+
+@media (max-width: 1100px) {
+  html {
+    font-size: 57%;
+  }
+}
+
+@media (max-width: 750px) {
+  html {
+    font-size: 50%;
+  }
+}
+
+body {
+  font-size: 1.6rem;
+  /* font-family: 'Lato', sans-serif; Lato:300i,400,700,900 */
+  /* font-family: 'PT Sans', sans-serif; */
+  font-family: 'Permanent Marker', cursive;
+  /* 
+  /* Other loaded font: */
+  /* font-family: 'Lobster Two', cursive; */
+  box-sizing: border-box;
 }

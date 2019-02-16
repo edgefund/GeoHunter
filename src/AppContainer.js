@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 
 import web3Options from './web3Options'
+import quorumConfig from './quorumConfig'
 import Web3 from 'web3';
 
 class AppContainer extends Component {
@@ -12,7 +13,8 @@ class AppContainer extends Component {
   }
 
   initilizeStore() {
-    this.props.initWeb3(new Web3(web3Options.providerEndpoint))
+    console.log(quorumConfig.providerEndpoint)
+    this.props.initWeb3(new Web3(quorumConfig.providerEndpoint))
 
     for(let contract of web3Options.contracts) {
       this.props.addContract(contract)

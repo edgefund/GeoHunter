@@ -1,0 +1,10 @@
+.header {
+  width: 100vw;
+  text-align: center;
+}
+
+h1 {
+  margin: auto;
+  vertical-align: middle;
+  line-height: 5rem;
+}
