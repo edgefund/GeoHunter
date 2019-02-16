@@ -3,7 +3,6 @@ import { Link } from 'react-router'
 import { HiddenOnlyAuth, VisibleOnlyAuth } from './util/wrappers.js'
 import { connect } from 'react-redux';
 
-
 // UI Components
 import LoginButtonContainer from './user/ui/loginbutton/LoginButtonContainer'
 import LogoutButtonContainer from './user/ui/logoutbutton/LogoutButtonContainer'
@@ -14,32 +13,28 @@ import './css/open-sans.css'
 import './css/pure-min.css'
 import './App.css'
 
-
 class App extends Component {
-
   render() {
     const OnlyAuthLinks = VisibleOnlyAuth(() =>
       <span>
         <li className="pure-menu-item">
-          <Link to="/dashboard" className="pure-menu-link">Dashboard</Link>
-        </li>
-        <li className="pure-menu-item">
-          <Link to="/profile" className="pure-menu-link">Profile</Link>
+          <Link to="/minigame" className="pure-menu-link">Minigame</Link>
         </li>
         <LogoutButtonContainer />
       </span>
     )
 
     const OnlyGuestLinks = HiddenOnlyAuth(() =>
-      <span>
-        <LoginButtonContainer />
-      </span>
+      <div>
+        <span><Link to="/leaderboard" className="pure-menu-link">Leaderboard</Link>
+        <span><LoginButtonContainer /></span>
+      </div>
     )
 
     return (
       <div className="App">
         <nav className="navbar pure-menu pure-menu-horizontal">
-          <Link to="/" className="pure-menu-heading pure-menu-link">Truffle Box</Link>
+          <Link to="/" className="pure-menu-heading pure-menu-link">Geo Hunter</Link>
           <ul className="pure-menu-list navbar-right">
             <OnlyGuestLinks />
             <OnlyAuthLinks />
@@ -53,4 +48,3 @@ class App extends Component {
 }
 
 export default App
-
