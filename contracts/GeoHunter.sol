@@ -15,15 +15,28 @@ contract GeoHunter is Ownable, Pausable {
     
     // Events
     event balanceNowUpdated(uint _newBalance);
-    event tagNowRegistered(address _owner);
-    event tagNowScanned(address _scanner, string _long, string _lat, string _timestamp, uint256 _itemId);
+    event userNowRegistered();
+    event tagNowRegistered(uint32 _tagIndex, string _tagDid, uint256 _ipfsHash);
+    event tagNowScanned(string userDid, string username, string tagDid, string timestamp);
 
     struct Tag {
+        bool registered;
         string Did;
-        uint256 ipfsHash; // Can be a hash of a picture of the tag location 
+        uint256 ipfsHash; // Could be a hash of a picture of the tag location 
     }
-    mapping (uint32 => Tag) private tagsList; // 0 to 4 will be the five game tags
-    // Tag[] private tags;
+    mapping (uint32 => Tag) private tagList; // 0 to 4 will be the five game tags
+    mapping (string => uint32) private tagIndex; 
+
+    struct User {
+        bool registered;
+        string userDid;
+        string username;
+        uint8 progress;
+        string startTime;
+        string endTime;
+    }
+    mapping (uint32 => User) private userList;
+    mapping (string => uint32) private userIndex; 
 
     struct Scan {
         string userDid;
@@ -31,13 +44,10 @@ contract GeoHunter is Ownable, Pausable {
         string tagDid;
         string timestamp;
     }
-    Scan[] private scans;
+    mapping (uint32 => Scan) private scanList;
+    // Scan[] private scans;
 
-    mapping (string => bool) private userRegistered;
-    mapping (string => bool) private tagRegistered;
-
-
-
+    /// @dev Constructor
     constructor() public {
     }
 
@@ -61,25 +71,42 @@ contract GeoHunter is Ownable, Pausable {
         emit balanceNowUpdated(address(this).balance);  
     }
 
+    /// @dev Register NFC tags with a particular index number and IPFS hash 
+    /// @param _tagIndex Desired Tag Index - will overwrite previous tag registered to that index if existing 
+    /// @param _tagDid NFC Tag DID code 
+    /// @param _ipfsHash IPFS hash associated with the NFC tag (could be a hash of a picture of the tag location)
     function registerTag(uint32 _tagIndex, string memory _tagDid, uint256 _ipfsHash) public {
         onlyOwner;
-        if (tagRegistered[_tagDid] == false) {
-            tagRegistered[_tagDid] == true;
+        if (tagList[tagIndex[_tagDid]].registered == false) {
+            tagList[tagIndex[_tagDid]].registered == true;
             totalTags++;
         }
-        
-        tagsList[_tagIndex].Did = _tagDid;
-        tagsList[_tagIndex].ipfsHash = _ipfsHash;
-
-
+        tagList[_tagIndex].Did = _tagDid;
+        tagList[_tagIndex].ipfsHash = _ipfsHash;
+        emit tagNowRegistered(_tagIndex, _tagDid, _ipfsHash);
     }
 
-    // function scanTag() public {
-    //     if 
-    // }
+    /// @dev Record the scanning of NFC tags 
+    /// @param _userDid User's uPort DID code
+    /// @param _username User's uPort username
+    /// @param _tagDid NFC Tag DID code 
+    /// @param _timestamp Time of scanning event 
+    function scanTag(string memory _userDid, string memory _username, string memory _tagDid, string memory _timestamp) public {
+        string memory zeroTagIndexDidInstance = tagList[0].Did;
+        if ((userList[userIndex[_userDid]].registered == false) && 
+            (keccak256(abi.encode(_tagDid)) == keccak256(abi.encode(zeroTagIndexDidInstance)))) {
+            userList[userIndex[_userDid]].registered == true;
+            totalUsers++;
+        }
 
+        string memory nextTagIndexDidInstance = tagList[userList[userIndex[_userDid]].progress + 1].Did;
+        if (keccak256(abi.encode(_tagDid)) == keccak256(abi.encode(nextTagIndexDidInstance))) {
+            userList[userIndex[_userDid]].progress++;
+        }
 
-
+        totalScans++;
+        emit tagNowScanned(_userDid, _username, _tagDid, _timestamp);
+    }
 
 
 }
