@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 import { HiddenOnlyAuth, VisibleOnlyAuth } from './util/wrappers.js'
+import { connect } from 'react-redux';
+
 
 // UI Components
 import LoginButtonContainer from './user/ui/loginbutton/LoginButtonContainer'
@@ -12,7 +14,9 @@ import './css/open-sans.css'
 import './css/pure-min.css'
 import './App.css'
 
+
 class App extends Component {
+
   render() {
     const OnlyAuthLinks = VisibleOnlyAuth(() =>
       <span>
@@ -49,3 +53,4 @@ class App extends Component {
 }
 
 export default App
+
