@@ -27,17 +27,11 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-        getIPFSImage: () => dispatch({type: 'GET_IPFS_IMAGE'})
-    }
+    return {}
 }
 
 class MiniGame extends Component {
     state = {}
-
-    componentDidMount() {
-        this.props.getIPFSImage();
-    }
 
     render() {
         const isLoggedIn = !!this.props.user.data;
