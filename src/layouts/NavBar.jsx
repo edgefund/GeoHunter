@@ -99,7 +99,3 @@ export default class NavBar extends Component {
     )
   }
 }
-<<<<<<< HEAD
- 
-=======
->>>>>>> a6284aa8179bacd766af270b607da207309d54d2
