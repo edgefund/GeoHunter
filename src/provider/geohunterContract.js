@@ -1,20 +1,41 @@
 import Web3 from 'web3';
 import { sendTx } from './signSendTx';
 
-const web3 = new Web3("http://ec2-34-220-53-37.us-west-2.compute.amazonaws.com:22000");
-const GeoHunter = require('../build/contracts/GeoHunter.json');
-const contract_address = '';
-const contract = web3.eth.Contract(GeoHunter.abi, contract_address);
+import web3Options from './web3Options'
+import quorumConfig from './quorumConfig'
+
+const web3 = new Web3(quorumConfig.providerEndpoint);
+
+const contract = web3.eth.Contract(
+  web3Options.contracts.GeoHunter.abi, 
+  web3Options.contracts.GeoHunter.address
+);
+
+export async function registerNewTag(_tagUid, _ipfsHash, _lat, _long) {
+  registerTag(0, _tagUid, _ipfsHash, _lat, _long);
+}
 
 // returns Promise<TransactionReceipt>
 export async function registerTag(_tagIndex, _tagUid, _ipfsHash, _lat, _long )  {
-  let tx = contract.methods.registerTag(_tagIndex, _tagUid, _ipfsHash, _lat, _long);
+  let tx = await contract.methods.registerTag(_tagIndex, _tagUid, _ipfsHash, _lat, _long);
   return sendTx(tx);
 }
 
 export async function registerUser(_userDid, _username) {
-  let tx = contract.methods.registerUser(_userDid, _username);
+  let tx = await contract.methods.registerUser(_userDid, _username);
   return sendTx(tx);
+}
+
+export async function getUser(_userIdex) {
+  let x = await contract.methods.getUser(_userIdex).call();
+  let result = {
+    _userDid: x._userDid,
+    _username: x._username,
+    _progress: x._progress,
+    _startTime: x._startTime,
+    _endTime: x._endTime,
+  };
+  return result;
 }
 
 export async function scanTag(_userDid, _username, _tagUid) {
@@ -27,8 +48,8 @@ export async function nextTagRequired(_userDid) {
   let x = await contract.methods.nextTagRequired(_userDid).call();
   let result = {
     _nextTagIndex: x._nextTagIndex,
-    _nextTagUid: x._nextTagUid,
-    _success: x._success
+    _nextTagUid: x.providerEndpoint_nextTagUid,
+    _success: x._success,
   };
   return result;
 }

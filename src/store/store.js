@@ -6,7 +6,7 @@ import reducer from './reducer'
 
 // Sagas
 import createSagaMiddleware from "redux-saga";
-import { watcherSaga } from "./sagas/sagas";
+import rootSaga from "./sagas/rootSaga";
 
 // create the saga middleware
 const sagaMiddleware = createSagaMiddleware();
@@ -26,5 +26,8 @@ const store = createStore(
     )
   )
 )
+
+sagaMiddleware.run(rootSaga)
+
 
 export default store
