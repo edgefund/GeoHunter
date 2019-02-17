@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './NavBar.css'
 import styled from 'styled-components'
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const StyledNavBar = styled.div`
   display: flex;
@@ -69,18 +69,32 @@ export default class NavBar extends Component {
 
   render() {
     const { activeItem } = this.state
+    const { userData, onLoginUserClick, onLogoutUserClick } = this.props
+
+    const loginButton = ( !userData ) ? (
+      <div 
+        className="log-in"
+        onClick={(e) => onLoginUserClick(e)}
+      >
+        Log In
+      </div>
+    ) : (
+      <div
+        className="log-out"
+        onClick={(e) => onLogoutUserClick(e)}
+      >
+        Log Out
+      </div>
+    )
 
     return (
       <StyledNavBar>
-        
         <Link to="/">
           <div className="h1">
               GEO HUNTER
           </div>
         </Link>
-        <div className="log-in">
-          Log In
-        </div>
+        {loginButton}
       </StyledNavBar>
     )
   }

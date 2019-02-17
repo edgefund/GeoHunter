@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Button from '../components/Button/Button'
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import './Splash.css'
 
 export default class Splash extends Component {

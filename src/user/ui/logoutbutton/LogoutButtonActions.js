@@ -13,7 +13,5 @@ export function logoutUser() {
     // Logout user.
     dispatch(userLoggedOut())
 
-    // Redirect home.
-    return browserHistory.push('/')
   }
 }
