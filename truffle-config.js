@@ -8,7 +8,7 @@ module.exports = {
     development: {
       provider: new HDWalletProvider(
         "15E0DB619B64C1E175CE0F0F05F21F19BFCAF2B1DDF1C47C88F7C778CFD47AF5",
-        "http://ec2-34-220-53-37.us-west-2.compute.amazonaws.com:22000"
+        "https://geohunter.duckdns.org:1337/"
       ),
       network_id: "10",
       gas: 0,

@@ -19,10 +19,17 @@ export function* getIpfsImageHash() {
 
   const tag = yield call(nextTagRequired, currentDid);
 
+<<<<<<< HEAD
   if(tag) {
     console.log('What is tag?:', tag);
     if(tag._ipfsHash) {
       yield put({type: 'GOT_IPFS_IMAGE', payload: tag._ipfsHash.toString()});
     } 
+=======
+  console.log('What is tag?:', tag);
+  console.log(typeof tag._ipfsHash !== 'undefined');
+  if(typeof tag._ipfsHash !== 'undefined') {
+    yield put({type: 'GOT_IPFS_IMAGE', payload: tag._ipfsHash.toString()});
+>>>>>>> 1379b6bc81d1c754d2cebdcb41a463430d106e11
   }
 }

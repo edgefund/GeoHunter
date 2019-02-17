@@ -6,16 +6,19 @@ _Authors: Bryce Doganer, Andy Watt, Gareth Oates, Colin McCrae, Lucas Henning_
 
 ## Project Specs
 ### Repo Location
-[The final project is stored here on GitLab](https://gitlab.com/ethdenver/project "GitLab - ETHdenver Project: GeoHunter")
+[The final project is stored here on GitHub](https://github.com/edgefund/GeoHunter "GitHub - ETHdenver Project: GeoHunter")
+
 
 
 ## How to Set Up for Evaluation
 ### Pre-requisites
  It is presumed that the evaluator has the following applications already installed:
+
 + Git
-+ NPM (Node Package Manager)
-+ Truffle
-+ Ganache (or Ganache-CLI)
++ Node Package Manager (Node v11.9.0, Npm v6.5.0)
++ Truffle v5.0.4 (core: 5.0.4)
++ Solidity v0.5.0 (solc-js)
++ Ganache or Ganache-CLI (v6.3.0 (ganache-core: 2.4.0)
 + Google Chrome with Metamask Plug-in installed
 + A code editor (e.g. VS Code or Atom)
 
@@ -24,8 +27,8 @@ The following steps will allow the project to be evaluated. The terminal command
 
 1. Navigate your development folder and clone the project repo from Github. The command below will create a folder 'project' in your chosen development folder. 
 
-   $ `git clone https://gitlab.com/ethdenver/project`
-
+   $ `git clone https://github.com/edgefund/GeoHunter`
+   
 2. Go into the new folder 
 
    $ `cd project`
@@ -44,17 +47,15 @@ The following steps will allow the project to be evaluated. The terminal command
 
 6. Ensure that you are running Ganache (or Ganache-CLI) on Port 8545 (HTTP://127.0.0.1:8545)
 
-7. Ensure the Metamask Chrome Plug-in is connected to your Ganache (or Ganache-CLI) instance. The requires the same twelve-word seed phrase to be used for both.
-
-8. To migrate the contacts to the Ganache local blockchain
+7. To migrate the contacts to the Ganache local blockchain
 
    $ `truffle migrate` (if you need to migrate the contract again, you will  need to use `truffle migrate --reset`)
 
-9. To run the app code tests
+8. To run the app code tests
 
    $ `truffle test`
 
-10. Run the app's JavaScript React development server locally to bring up the app UI. These commands should automoatically open your default browser (you'll need Google Chrome with Metamask Plug-in installed) and bring up the app at the local address (URL = http://localhost:3000/) where you can interact with the app. Note that it will prompt you to sign into Metamask if you are not already signed in. 
+9. Run the app's JavaScript React development server locally to bring up the app UI. These commands should automoatically open your default browser
 
    $ `cd app`
 
@@ -62,8 +63,6 @@ The following steps will allow the project to be evaluated. The terminal command
    
    $ `npm run start`
 
-11. You should now be able to use the app's UI. When approving a transaction in Metamask, if you get a nonce mismatch error that is due to Metamask being out of sync with Ganache and you will need to reset both.
+11. You should now be able to use the app's UI. 
 
-Contract actions will appear in the developer console log in Google Chrome. Press Ctrl + Shift + I to view these.
-
-12. Ctrl+C to exit the development server in Terminal.
+Contract actions will appear in the developer console log in Google Chrome. Press Ctrl + Shift + I to view these. Ctrl+C to exit the development server in Terminal.

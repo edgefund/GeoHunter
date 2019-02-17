@@ -16,6 +16,10 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
+function completed() {
+
+}
+
 class QRScanner extends Component {
     constructor(props) {
         super(props);
@@ -29,8 +33,8 @@ class QRScanner extends Component {
 
     handleScan(data) {
         if (data) {
-            let { scannedObject } = this.props;
             this.props.gotQRData(data);
+
             this.setState({ showQRScanner: false }, async () => await scanTag (
                 this.props.user.data.did,
                 this.props.user.data.name,
@@ -60,7 +64,8 @@ class QRScanner extends Component {
                             onScan={this.handleScan}
                             // style={{ width: "100%" }}
                         />
-                    </div> : <p>Successfully scanned!</p> }
+                    </div> : <p>Successfully scanned!</p>
+                }
             </div>
         )
     }

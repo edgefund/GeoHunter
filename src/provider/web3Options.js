@@ -6,7 +6,7 @@ let web3Options = {
   contracts: {
       GeoHunter: {
         abi: GeoHunter.abi,
-        address: '0xd0173c9b63164f0bd07de08376f889ce60318300',
+        address: '0x0df14be610fe589bfdd6bf7d88683a759d857c42',
       },
       SimpleStorage: {
         abi: SimpleStorage.abi,

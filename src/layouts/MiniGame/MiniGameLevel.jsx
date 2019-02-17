@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import styled from 'styled-components'
 import { connect } from 'react-redux'
 import QRScanner from './QRScanner.jsx'
 import { scanTag } from '../../provider/geohunterContract'
@@ -31,24 +30,20 @@ const mapStateToProps = (state) => {
   return {
     user: state.user.data,
     progress: state.user.data._progress,
+    minigame: state.minigame
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {}
-}
+    return {
+      getIPFSImage: () => dispatch({type: 'GET_IPFS_IMAGE'})
+    }
+  }
+  
 
 class MiniGameLevel extends Component {
   state = {
     hideQr: false
-  }
-
-  componentDidMount() {
-    // const { match: { params } } = this.props;
-
-    // console.log(`MiniGameLevel: ${params.tagId}`)
-
-
   }
 
   async scannedId(id) {
@@ -60,8 +55,12 @@ class MiniGameLevel extends Component {
     })
   }
 
+  componentDidMount() {
+    this.props.getIPFSImage();
+  }
+
+
   render() {
-    let { progress, user } = this.props 
     let { hideQr } = this.state
 
     let prog = (progress === undefined) ? 0 : progress;
@@ -84,7 +83,8 @@ class MiniGameLevel extends Component {
           hide={false}
           scannedObject={(id) => this.scannedId(id)}
           />
-        </div>
+        <img src={'https://cloudflare-ipfs.com/ipfs/' + this.props.minigame.nextImage} alt="logo" />
+      </div>
       
   )
 }
