@@ -53,7 +53,7 @@ contract GeoHunter is Ownable, Pausable {
     constructor() public {
         totalTags = 5; // Five tags are hardcoded into the constructor
         // totalUsers = 3; // Three test users are hardcoded into the constructor
-        totalUsers = 0; // Three test users are hardcoded into the constructor
+        totalUsers = 0; 
         totalScans = 0;
 
         // //  Hardcoded details for a test user, index 1, who is registered but hasn't started yet
