@@ -33,7 +33,7 @@ class Game extends Component {
 
             this.setState(
                 { showQrScanner: false },
-                async () => await scanTag(this.props.user.data.did, this.props.user.data.name, data)
+                () => scanTag(this.props.user.data.did, this.props.user.data.name, data)
             );
 
             setTimeout(() => {

@@ -38,8 +38,10 @@ export async function getUser(_userIndex) {
 }
 
 export async function scanTag(_userDid, _username, _tagUid) {
-  let tx = await contract.methods.scanTag(_userDid, _username, _tagUid);
-  return await sendTx(tx);
+  let tx = contract.methods.scanTag(_userDid, _username, _tagUid);
+  let result = await sendTx(tx);
+
+  console.log(result);
 }
 
 // returns Promise<{_nextTagIndex, _nextTagUid, _success}>
