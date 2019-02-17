@@ -85,6 +85,7 @@ export default class NavBar extends Component {
             </div>
           </Link>
           <Link to="/leaderboard">Leaderboard</Link>
+          <Link to="/minigame">Mini-Game</Link>
           {loginButton}
         </StyledNavBar>
       </React.Fragment>
