@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Route, BrowserRouter as Router } from 'react-router-dom'
 import { Provider } from 'react-redux'
+// import { UserIsAuthenticated } from './util/wrappers'
 
 // Layouts
 import AppContainer from './AppContainer'

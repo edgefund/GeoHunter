@@ -1,6 +1,5 @@
-import React, { Component } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
 import uportIcon from '../../images/uport-icon.png'
 
 const StyledLeaderCell = styled.div`
@@ -40,7 +39,7 @@ const LeaderCell = ({img, name, time}) => {
         </tbody>
       </table>
       <div>
-        <img src={image} />
+        <img src={image} alt="profile" />
       </div>
     </StyledLeaderCell>
   )

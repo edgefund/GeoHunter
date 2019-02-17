@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
 import NavBarContainer from '../NavBarContainer'
 import LeaderTable from './LeaderTable.jsx'
 
