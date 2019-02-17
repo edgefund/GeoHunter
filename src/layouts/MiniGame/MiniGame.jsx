@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import NavBar from '../NavBar'
+import NavBar from '../NavBar/NavBar.jsx'
 
 export default class MiniGame extends Component {
     state = {}
