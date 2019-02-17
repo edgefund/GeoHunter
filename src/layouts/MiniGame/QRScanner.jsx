@@ -31,10 +31,10 @@ class QRScanner extends Component {
         this.handleScan = this.handleScan.bind(this);
     }
 
-
     handleScan(data) {
         if (data) {
             this.props.gotQRData(data);
+
             this.setState({ showQRScanner: false }, async () => await scanTag (
                 this.props.user.data.did,
                 this.props.user.data.name,
