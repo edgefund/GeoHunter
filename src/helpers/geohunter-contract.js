@@ -32,9 +32,14 @@ export async function registerUser(_userDid, _username) {
 }
 
 export function scanTag(_userDid, _username, _tagUid) {
+<<<<<<< HEAD
   console.log('scanning...')
   let tx = myDecoratedContract.methods.scanTag(_userDid, _username, _tagUid);
   return sendTx(tx);
+=======
+  // let tx = contract.methods.scanTag(_userDid, _username, _tagUid);
+  // return sendTx(tx);
+>>>>>>> 3785a9af8689ea2e16e6df6b4a23041fa06e70f3
 }
 
 // returns Promise<{_nextTagIndex, _nextTagUid, _success}>

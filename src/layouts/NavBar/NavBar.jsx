@@ -15,7 +15,7 @@ const StyledNavBar = styled.div`
   background: #333745;
   padding-left: 2rem;
   padding-right: 5rem;
-  box-shadow: .2rem 1rem 1rem .1rem rgba(0,0,0,0.56); 
+  box-shadow: .2rem 1rem 1rem .1rem rgba(0,0,0,0.56);
 
   & div {
     vertical-align: center;
@@ -57,7 +57,7 @@ export default class NavBar extends Component {
     const { userData, onLoginUserClick, onLogoutUserClick, loggingIn } = this.props
 
     const loginButton = ( !userData ) ? (
-      <div 
+      <div
         className="log-in"
         onClick={(e) => onLoginUserClick(e)}
       >
@@ -74,9 +74,9 @@ export default class NavBar extends Component {
 
     return (
       <React.Fragment>
-        <Spinner hide={!loggingIn}/> 
+        <Spinner hide={!loggingIn}/>
         <StyledNavBar>
-          <Link 
+          <Link
             to="/"
             style={{textDecoration: 'none'}}
           >
@@ -84,10 +84,11 @@ export default class NavBar extends Component {
                 GEO HUNTER
             </div>
           </Link>
+          <Link to="/leaderboard">Leaderboard</Link>
+          <Link to="/minigame">Mini-Game</Link>
           {loginButton}
         </StyledNavBar>
       </React.Fragment>
-
     )
   }
 }
