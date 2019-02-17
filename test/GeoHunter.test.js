@@ -83,6 +83,23 @@ contract('Testing GeoHunter', async (accounts) => {
         assert.equal(actual[2], expected);
     });
 
+    it('Test user 2 should not have an endtime initially', async () => {
+        const geoHunter = await GeoHunter.deployed();
+
+        const actual = await geoHunter.getUser(2);
+
+        assert.isTrue(actual[4] == 0);
+    });
+
+    it('Test user 2 should get an endtime after scanning the fifth (final) item', async () => {
+        const geoHunter = await GeoHunter.deployed();
+
+        const result = await geoHunter.scanTag("did:example:2123456789abcdefghi", "Test User 2", "56199909d0b5fd");
+        const actual = await geoHunter.getUser(2);
+
+        assert.isTrue(actual[4] != "");
+    });
+
 });
 
 

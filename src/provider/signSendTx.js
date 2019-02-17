@@ -1,6 +1,7 @@
 import Web3 from 'web3';
-const web3 = new Web3("http://ec2-34-220-53-37.us-west-2.compute.amazonaws.com:22000");
 const quorumConfig = require('../quorumConfig');
+
+const web3 = new Web3(quorumConfig.provider);
 const privateKey = quorumConfig.privateKey;
 const fromAddress = quorumConfig.publicKey;
 
@@ -12,12 +13,13 @@ export async function sendTx (tx) {
   };
 
   let signedTx = await web3.eth.accounts.signTransaction(txObject, privateKey);
+
   return web3.eth.sendSignedTransaction(signedTx.rawTransaction)
-  .on("transactionHash", (txHash) => { 
+  .on("transactionHash", (txHash) => {
     console.log("signAndSendTx() TxHash: " + txHash)
   })
   .on('confirmation', (confirmationNumber, receipt) => {})
-  .on('receipt', (txReceipt) => { 
+  .on('receipt', (txReceipt) => {
     console.log("signAndSendTx success. Tx Address: " + txReceipt.transactionHash);
   })
   .catch(e => {

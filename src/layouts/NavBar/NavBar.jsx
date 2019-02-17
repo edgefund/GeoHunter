@@ -23,7 +23,7 @@ const StyledNavBar = styled.div`
   }
 
   & .h1 {
-    font-size: 3rem;
+    font-size: 2rem;
 
     &:active {
       color: #FE5F55;
@@ -84,7 +84,7 @@ export default class NavBar extends Component {
                 GEO HUNTER
             </div>
           </Link>
-          <Link to="/leaderboard">Leaderboard</Link>
+          <Link to="/leaderboard">Board</Link>
           <Link to="/minigame">Mini-Game</Link>
           {loginButton}
         </StyledNavBar>

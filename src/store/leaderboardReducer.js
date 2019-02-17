@@ -1,14 +1,14 @@
 const initialState = {
-  leaderObjectArray = []
+  leaderObjectArray: []
 }
 
 const minigameReducer = (state = initialState, action) => {
   // TODO: Test logic 
   if (action.type === 'UPDATE_ARRAY_OBJECT') {
-    Arrays.asList(Types).indexOf(userSTring);
+    // Arrays.asList(Types).indexOf(userSTring);
     var elementPos = state.leaderObjectArray.map((leaderObject) => { 
-      return leaderObject.did;
-    }).indexOf(action.leaderObject.did);
+      return leaderObject._userDid;
+    }).indexOf(action.leaderObject._userDid);
 
     if( elementPos >= 0 ) {
       return {
@@ -19,7 +19,7 @@ const minigameReducer = (state = initialState, action) => {
       }
     }
     return Object.assign({}, state, {
-      leaderObjectArray: [...leaderObjectArray, action.leaderObject]
+      leaderObjectArray: [...state.leaderObjectArray, action.leaderObject]
     });
   }
 
