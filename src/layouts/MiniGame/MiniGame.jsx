@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import NavBar from '../NavBar/NavBar.jsx'
+import NavBarContainer from '../NavBar/NavBarContainer.jsx'
 import Game from './Game.jsx'
 import { connect } from 'react-redux';
 
@@ -32,12 +32,10 @@ class MiniGame extends Component {
     state = {}
 
     render() {
-        console.log(this.store);
-        const isLoggedIn = this.props.user.name != undefined
+        const isLoggedIn = this.props.user.data && this.props.user.data.name !== undefined;
 
         if (!isLoggedIn) {
-            
-            return <div><NavBar /><ShowModal /></div>
+            return <div><NavBarContainer /><ShowModal /></div>
         } else {
             return <ShowMiniGame />
         }

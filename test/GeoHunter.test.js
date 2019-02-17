@@ -1,8 +1,8 @@
 const GeoHunter = artifacts.require('./GeoHunter.sol');
 const truffleAssert = require('truffle-assertions');
 
-/* These tests ensure the correct operation of the GeoHunter contract.
-**/
+// These tests ensure the correct operation of the GeoHunter contract.
+
 contract('Testing GeoHunter', async (accounts) => {
     /* Tests the functionality of the constructor.
      * Simply check that the params are stored.
@@ -18,7 +18,6 @@ contract('Testing GeoHunter', async (accounts) => {
         assert.equal(actual, expected);
     });
 
-
     /* Tests the functionality of the constructor.
      * Simply check that the params are stored.
      **/
@@ -27,14 +26,14 @@ contract('Testing GeoHunter', async (accounts) => {
         const expected = 2;
         let actual;
 
-        const tag4 = await geoHunter.tagList.call(4);
-        actual = tag4.Uid;
+        const tag2 = await geoHunter.tagIndex.call("26199909d0b5fd");
+        actual = tag2;
 
         assert.equal(actual, expected);
     });
-
-
-
-
-
 });
+
+
+
+
+

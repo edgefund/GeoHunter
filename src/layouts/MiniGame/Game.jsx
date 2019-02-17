@@ -8,15 +8,19 @@ export default class MiniGame extends Component {
         super(props);
         this.state = {
             delay: 300,
-            result: "No result"
+            result: "No result",
+            showQrScanner: true
         };
         this.handleScan = this.handleScan.bind(this);
     }
 
     handleScan(data) {
         if (data) {
-        this.setState({
-            result: data
+            console.log(data);
+            window.qrresult = data;
+            this.setState({
+                result: data,
+                showQrScanner: false
             });
         }
     }
@@ -30,12 +34,15 @@ export default class MiniGame extends Component {
             <div>
                 <NavBar />
                 <div>
-                    <QrReader
-                        delay={this.state.delay}
-                        onError={this.handleError}
-                        onScan={this.handleScan}
-                        style={{ width: "100%" }}
-                    />
+                    { this.state.showQrScanner ?
+                        <QrReader
+                            delay={this.state.delay}
+                            onError={this.handleError}
+                            onScan={this.handleScan}
+                            style={{ width: "100%" }}
+                        /> :
+                        this.state.result
+                    }
                     <p>{this.state.result}</p>
                 </div>
             </div>
