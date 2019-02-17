@@ -139,6 +139,7 @@ contract GeoHunter is Ownable, Pausable {
 
     /// @dev Register tags with a particular index number and IPFS hash 
     /// @param _tagIndex Desired Tag Index - will overwrite previous tag registered to that index if existing 
+    ///     An index of 0 will create a new tag and increment the total tag count
     /// @param _tagUid Tag UID code 
     /// @param _ipfsHash IPFS hash associated with the tag (could be a hash of a picture of the tag location)
     /// @param _lat Location (latitude) of tag
@@ -153,15 +154,21 @@ contract GeoHunter is Ownable, Pausable {
         onlyOwner
         returns (bool)
         {
-        require(_tagIndex > 0, "Tag index cannot be 0 (reserved for unregistered tags)");
+        require(_tagIndex <= totalTags, "Tag index cannot be greater than the current number of tags");
+        uint32 newTagIndex;
         if (tagIndex[_tagUid] == 0) {
-            tagIndex[_tagUid] = _tagIndex;
             totalTags++;
+            newTagIndex = totalTags;
+            tagIndex[_tagUid] = newTagIndex;
         }
-        tagList[_tagIndex].Uid = _tagUid;
-        tagList[_tagIndex].ipfsHash = _ipfsHash;
-        tagList[_tagIndex].lat = _lat;
-        tagList[_tagIndex].long = _long;
+        else {
+            newTagIndex = _tagIndex;
+        }
+
+        tagList[newTagIndex].Uid = _tagUid;
+        tagList[newTagIndex].ipfsHash = _ipfsHash;
+        tagList[newTagIndex].lat = _lat;
+        tagList[newTagIndex].long = _long;
 
         emit tagNowRegistered(_tagIndex, _tagUid, _ipfsHash, _lat, _long);
         return true;
