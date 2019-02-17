@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
-import NavBar from '../NavBar'
+import NavBarContainer from '../NavBarContainer'
 import LeaderTable from './LeaderTable.jsx'
 
 const StyledLeaderboard = styled.div`
@@ -19,7 +19,7 @@ export default class Leaderboard extends Component {
   render() {
     return (
       <StyledLeaderboard>
-        <NavBar />
+        <NavBarContainer />
         <h1>LEADERBOARD</h1>
         <LeaderTable />
       </StyledLeaderboard>

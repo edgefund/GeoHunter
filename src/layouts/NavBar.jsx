@@ -69,6 +69,23 @@ export default class NavBar extends Component {
 
   render() {
     const { activeItem } = this.state
+    const { userData, onLoginUserClick, onLogoutUserClick } = this.props
+
+    const loginButton = ( !userData ) ? (
+      <div 
+        className="log-in"
+        onClick={(e) => onLoginUserClick(e)}
+      >
+        Log In
+      </div>
+    ) : (
+      <div
+        className="log-out"
+        onClick={(e) => onLogoutUserClick(e)}
+      >
+        Log Out
+      </div>
+    )
 
     return (
       <StyledNavBar>
@@ -78,10 +95,12 @@ export default class NavBar extends Component {
               GEO HUNTER
           </div>
         </Link>
-        <div className="log-in">
-          Log In
-        </div>
+        {loginButton}
       </StyledNavBar>
     )
   }
 }
+<<<<<<< HEAD
+ 
+=======
+>>>>>>> a6284aa8179bacd766af270b607da207309d54d2
