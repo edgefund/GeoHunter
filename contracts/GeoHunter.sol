@@ -27,7 +27,7 @@ contract GeoHunter is Ownable, Pausable {
         string long;
     }
     mapping (string => uint32) private tagIndex; // 0 returned means tag UID is unregistered
-    mapping (uint32 => Tag) private tagList; // Since index 0 means tag UID is unregistered, index 1 to 5 will be the five game tags
+    mapping (uint32 => Tag) public tagList; // Since index 0 means tag UID is unregistered, index 1 to 5 will be the five game tags
 
     struct User {
         string userDid;
@@ -37,7 +37,7 @@ contract GeoHunter is Ownable, Pausable {
         uint endTime;
     }
     mapping (string => uint32) private userIndex; // 0 returned means user DID is unregistered
-    mapping (uint32 => User) private userList; // Since index 0 means user DID is unregistered, 1st user is index 1
+    mapping (uint32 => User) public userList; // Since index 0 means user DID is unregistered, 1st user is index 1
 
     struct Scan {
         string userDid;
@@ -45,7 +45,7 @@ contract GeoHunter is Ownable, Pausable {
         string tagUid;
         uint timestamp;
     }
-    mapping (uint32 => Scan) private scanList;
+    mapping (uint32 => Scan) public scanList;
 
     /// @dev Constructor
     /// @dev Initialize totals, and hardcode game with the details of 5 tags
@@ -55,37 +55,37 @@ contract GeoHunter is Ownable, Pausable {
         totalScans = 0;
 
         //  Hardcoded details for Tag index 1 (tag UID, IPFS hash, and location latitude and longitude)
-        tagIndex["d6199909d0b5fd"] = 1; // Replace with actual UID
-        tagList[1].Uid = "d6199909d0b5fd"; // Replace with actual UID
-        tagList[1].ipfsHash = "QmWWQSuPMS6aXCbZKpEjPHPUZN2NjB3YrhJTHsV4X3vb2t";
+        tagIndex["16199909d0b5fd"] = 1; // Replace with actual UID
+        tagList[1].Uid = "16199909d0b5fd"; // Replace with actual UID
+        tagList[1].ipfsHash = "1mWWQSuPMS6aXCbZKpEjPHPUZN2NjB3YrhJTHsV4X3vb2t";
         tagList[1].lat = "";
         tagList[1].long = "";
 
         //  Hardcoded details for Tag index 2 (tag UID, IPFS hash, and location latitude and longitude)
-        tagIndex["d6199909d0b5fd"] = 2; // Replace with actual UID
-        tagList[2].Uid = "d6199909d0b5fd"; // Replace with actual UID
-        tagList[2].ipfsHash = "QmWWQSuPMS6aXCbZKpEjPHPUZN2NjB3YrhJTHsV4X3vb2t"; // Replace with actual IPFS hash
+        tagIndex["26199909d0b5fd"] = 2; // Replace with actual UID
+        tagList[2].Uid = "26199909d0b5fd"; // Replace with actual UID
+        tagList[2].ipfsHash = "2mWWQSuPMS6aXCbZKpEjPHPUZN2NjB3YrhJTHsV4X3vb2t"; // Replace with actual IPFS hash
         tagList[2].lat = "";
         tagList[2].long = "";
 
         //  Hardcoded details for Tag index 3 (tag UID, IPFS hash, and location latitude and longitude)
-        tagIndex["d6199909d0b5fd"] = 3; // Replace with actual UID
-        tagList[3].Uid = "d6199909d0b5fd"; // Replace with actual UID
-        tagList[3].ipfsHash = "QmWWQSuPMS6aXCbZKpEjPHPUZN2NjB3YrhJTHsV4X3vb2t"; // Replace with actual IPFS hash
+        tagIndex["36199909d0b5fd"] = 3; // Replace with actual UID
+        tagList[3].Uid = "36199909d0b5fd"; // Replace with actual UID
+        tagList[3].ipfsHash = "3mWWQSuPMS6aXCbZKpEjPHPUZN2NjB3YrhJTHsV4X3vb2t"; // Replace with actual IPFS hash
         tagList[3].lat = "";
         tagList[3].long = "";
 
         //  Hardcoded details for Tag index 4 (tag UID, IPFS hash, and location latitude and longitude)
-        tagIndex["d6199909d0b5fd"] = 4; // Replace with actual UID
-        tagList[4].Uid = "d6199909d0b5fd"; // Replace with actual UID
-        tagList[4].ipfsHash = "QmWWQSuPMS6aXCbZKpEjPHPUZN2NjB3YrhJTHsV4X3vb2t"; // Replace with actual IPFS hash
+        tagIndex["46199909d0b5fd"] = 4; // Replace with actual UID
+        tagList[4].Uid = "46199909d0b5fd"; // Replace with actual UID
+        tagList[4].ipfsHash = "4mWWQSuPMS6aXCbZKpEjPHPUZN2NjB3YrhJTHsV4X3vb2t"; // Replace with actual IPFS hash
         tagList[4].lat = "";
         tagList[4].long = "";
 
         //  Hardcoded details for Tag index 5 (tag UID, IPFS hash, and location latitude and longitude)
-        tagIndex["d6199909d0b5fd"] = 5; // Replace with actual UID
-        tagList[5].Uid = "d6199909d0b5fd"; // Replace with actual UID
-        tagList[5].ipfsHash = "QmWWQSuPMS6aXCbZKpEjPHPUZN2NjB3YrhJTHsV4X3vb2t"; // Replace with actual IPFS hash
+        tagIndex["56199909d0b5fd"] = 5; // Replace with actual UID
+        tagList[5].Uid = "56199909d0b5fd"; // Replace with actual UID
+        tagList[5].ipfsHash = "5mWWQSuPMS6aXCbZKpEjPHPUZN2NjB3YrhJTHsV4X3vb2t"; // Replace with actual IPFS hash
         tagList[5].lat = "";
         tagList[5].long = "";
     }
