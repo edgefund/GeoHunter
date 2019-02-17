@@ -38,6 +38,6 @@ function* pollLeaderboard() {
       })
     }
 
-    yield delay(5000);
+    yield delay(50);
   }
 }
