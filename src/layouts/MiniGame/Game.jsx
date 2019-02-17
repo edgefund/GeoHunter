@@ -6,7 +6,7 @@ import { scanTag } from '../../helpers/geohunter-contract';
 const mapStateToProps = (state) => {
     return {
         minigame: state.minigame,
-        user: state.user.data
+        user: state.user
     }
 }
 
@@ -33,8 +33,12 @@ class Game extends Component {
 
             this.setState(
                 { showQrScanner: false },
-                async () => await scanTag(this.props.user.did, this.props.user.name, data)
+                async () => await scanTag(this.props.user.data.did, this.props.user.data.name, data)
             );
+
+            setTimeout(() => {
+                this.setState({ showQrScanner: true });
+            }, 3000);
         }
     }
 
@@ -49,14 +53,19 @@ class Game extends Component {
     render() {
         return (
             <div>
-                { this.state.showQrScanner ?
-                    <QrReader
-                        delay={this.state.delay}
-                        onError={this.handleError}
-                        onScan={this.handleScan}
-                        style={{ width: 500 }}
-                    /> : this.props.minigame.QRData
-                }
+                <div>
+                    Go to Level {this.props.user.nextTag}
+                </div>
+                <div>
+                    { this.state.showQrScanner ?
+                        <QrReader
+                            delay={this.state.delay}
+                            onError={this.handleError}
+                            onScan={this.handleScan}
+                            style={{ width: 500 }}
+                        /> : <p>Successfully Scanned!</p>
+                    }
+                </div>
             </div>
         );
     }

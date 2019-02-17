@@ -49,3 +49,4 @@ export async function getTotalScans()  {
   return contract.methods.getTotalScans().call();
 }
 
+
