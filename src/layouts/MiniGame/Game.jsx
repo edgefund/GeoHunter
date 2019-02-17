@@ -41,7 +41,6 @@ export default class MiniGame extends Component {
                     /> :
                     this.state.result
                 }
-                <p>{this.state.result}</p>
             </div>
         );
     }
