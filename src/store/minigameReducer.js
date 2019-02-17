@@ -1,7 +1,6 @@
 const initialState = {
     QRData: {},
-    chainData: {},
-    userLoggedIn: false
+    chainData: {}
 }
 
 const minigameReducer = (state = initialState, action) => {
