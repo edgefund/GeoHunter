@@ -76,6 +76,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "prepare": "truffle compile",
+    "postinstall": "truffle compile",
     "test": "node scripts/test.js --env=jsdom"
   },
   "jest": {

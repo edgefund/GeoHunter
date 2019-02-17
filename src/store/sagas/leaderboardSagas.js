@@ -36,7 +36,7 @@ function* pollLeaderboard() {
         leaderObject: user,
       })
     }
-    yield delay(50);
+    yield delay(5000);
   }
 }
 

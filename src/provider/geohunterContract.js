@@ -47,11 +47,12 @@ export async function scanTag(_userDid, _username, _tagUid) {
 // returns Promise<{_nextTagIndex, _nextTagUid, _success}>
 export async function nextTagRequired(_userDid) {
   let x = await contract.methods.nextTagRequired(_userDid).call();
+  console.log('x gonna give it to ya:', x);
   let result = {
     _nextTagIndex: x._nextTagIndex,
-    _nextTagUid: x.providerEndpoint_nextTagUid,
+    _nextTagUid: x._nextTagUid,
     _success: x._success,
-    _ipfsHash: x._ipfsHash
+    _ipfsHash: x._nextTagIpfsHash
   };
   return result;
 }
@@ -70,5 +71,3 @@ export async function getTotalUsers() {
 export async function getTotalScans()  {
   return contract.methods.getTotalScans().call();
 }
-
-

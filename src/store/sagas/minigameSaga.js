@@ -16,7 +16,10 @@ export const getCurrentUserDid = (state) => {
 export function* getIpfsImageHash() {
   const currentDid = yield select(getCurrentUserDid);
   console.log(currentDid);
+
   const tag = yield call(nextTagRequired, currentDid);
 
-  yield put({type: 'GOT_IPFS_IMAGE', payload: tag.ipfsHash});
+  console.log('What is tag?:', tag);
+
+  yield put({type: 'GOT_IPFS_IMAGE', payload: tag._ipfsHash.toString()});
 }
