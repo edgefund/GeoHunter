@@ -3,10 +3,10 @@ const initialState = {
 }
 
 const minigameReducer = (state = initialState, action) => {
-  // TODO: Test logic 
+  // TODO: Test logic
   if (action.type === 'UPDATE_ARRAY_OBJECT') {
     // Arrays.asList(Types).indexOf(userSTring);
-    var elementPos = state.leaderObjectArray.map((leaderObject) => { 
+    var elementPos = state.leaderObjectArray.map((leaderObject) => {
       return leaderObject._userDid;
     }).indexOf(action.leaderObject._userDid);
 
