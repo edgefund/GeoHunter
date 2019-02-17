@@ -1,7 +1,7 @@
 import Web3 from 'web3';
-const quorumConfig = require('../quorumConfig');
+import quorumConfig from './quorumConfig'
 
-const web3 = new Web3(quorumConfig.provider);
+const web3 = new Web3(quorumConfig.providerEndpoint);
 const privateKey = quorumConfig.privateKey;
 const fromAddress = quorumConfig.publicKey;
 
