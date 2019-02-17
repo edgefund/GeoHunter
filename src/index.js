@@ -22,6 +22,7 @@ ReactDOM.render((
             <Route exact path="/" component={Splash} />
             <Route path="/leaderboard" component={Leaderboard} />
             <Route path="/minigame" component={MiniGame} />
+            <Route path="/minigame/:tagId" component={MiniGame} />
           </div>
         </Router>
       </AppContainer>

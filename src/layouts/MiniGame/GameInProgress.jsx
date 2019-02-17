@@ -22,7 +22,7 @@ class GameInProgress extends Component {
   render() {
     return (
       <div>
-        <QRScanner scannedObject={(id) => this.handleScanId(id)} />
+        <QRScanner scannedObject={(id) => this.handleScanId(id)}/>
           <img src={'https://cloudflare-ipfs.com/ipfs/' + this.props.minigame.nextImage} alt="logo" />
       </div>
     );

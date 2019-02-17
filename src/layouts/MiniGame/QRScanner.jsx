@@ -31,7 +31,6 @@ class QRScanner extends Component {
         if (data) {
             let { scannedObject } = this.props;
             this.props.gotQRData(data);
-
             this.setState({ showQRScanner: false }, async () => await scanTag (
                 this.props.user.data.did,
                 this.props.user.data.name,
@@ -54,14 +53,15 @@ class QRScanner extends Component {
         return (
             <div>
                 { this.state.showQRScanner ?
-                    <QrReader
-                        delay={this.state.delay}
-                        onError={this.handleError}
-                        onScan={this.handleScan}
-                        style={{ width: "100%" }}
-                    /> : <p>Successfully scanned!</p>
-
-                }
+                    <div>
+                        <p>Go to Level { this.props.user.nextTag }</p>
+                        <QrReader
+                            delay={this.state.delay}
+                            onError={this.handleError}
+                            onScan={this.handleScan}
+                            style={{ width: "100%" }}
+                        />
+                    </div> : <p>Successfully scanned!</p> }
             </div>
         )
     }
