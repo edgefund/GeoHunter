@@ -43,10 +43,17 @@ contract('Testing GeoHunter', async (accounts) => {
         const actual = await geoHunter.getTag(3);
 
         assert.equal(actual[0], expected);
-
     });
 
-    // truffleAssert.eventEmitted(result, 'tagNowRegistered');
+    it('Should emit an event when a new tag is added', async () => {
+        const geoHunter = await GeoHunter.new();
+
+        const result = await geoHunter.registerTag(0, "66199909d0b5fd", "3mWWQSuPMS6aXCbZKpEjPHPUZN2NjB3YrhJTHsV4X3vb2t", "", "");
+        //const result = await geoHunter.getTag(6);
+
+        console.log(result);
+        truffleAssert.eventEmitted(result, 'tagNowRegistered');
+    });
 
 
 });
