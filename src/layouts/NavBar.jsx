@@ -3,7 +3,6 @@ import './NavBar.css'
 import styled from 'styled-components'
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
 
-
 const StyledNavBar = styled.div`
   display: flex;
   justify-content: space-between;
@@ -63,8 +62,6 @@ const StyledNavBar = styled.div`
   } */
 `
 
-
-
 export default class NavBar extends Component {
   state = {}
 
@@ -103,4 +100,7 @@ export default class NavBar extends Component {
     )
   }
 }
+<<<<<<< HEAD
  
+=======
+>>>>>>> a6284aa8179bacd766af270b607da207309d54d2

@@ -33,7 +33,6 @@ const StyledLeaderTable = styled.div`
   align-items: center;
   margin: 2rem auto;
 `
-
 export default class LeaderTable extends Component {
   state = {}
 
@@ -48,8 +47,8 @@ export default class LeaderTable extends Component {
   }
 
   render() {
-
     let sortedData = cellData.sort(this.sortTime)
+    
     const leaderCells = sortedData.map((data, index) =>
       <LeaderCell
         name={data.name}

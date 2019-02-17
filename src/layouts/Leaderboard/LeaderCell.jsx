@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
 import uportIcon from '../../images/uport-icon.png'
 
-
 const StyledLeaderCell = styled.div`
   width: 80vw;
   height: 20rem;
@@ -25,9 +24,7 @@ const StyledLeaderCell = styled.div`
     height: 20rem;
   }
 `
-
 const LeaderCell = ({img, name, time}) => {
-
   let image = img ? img : uportIcon
 
   return (

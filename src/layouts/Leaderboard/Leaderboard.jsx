@@ -4,7 +4,6 @@ import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
 import NavBarContainer from '../NavBarContainer'
 import LeaderTable from './LeaderTable.jsx'
 
-
 const StyledLeaderboard = styled.div`
   background-color: #EEF5DB;
 
@@ -14,14 +13,10 @@ const StyledLeaderboard = styled.div`
     text-align: center;
   }
 `
-
-
-
 export default class Leaderboard extends Component {
   state = {}
 
   render() {
-
     return (
       <StyledLeaderboard>
         <NavBarContainer />
@@ -31,4 +26,3 @@ export default class Leaderboard extends Component {
     )
   }
 }
-
