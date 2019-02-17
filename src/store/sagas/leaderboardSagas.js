@@ -27,8 +27,6 @@ function* pollLeaderboard() {
     for (let userIndex = 1; userIndex <= numUsers; userIndex++) {
       // Pull data
       let user = yield call(getUser, userIndex);
-      console.log(`userIndex: ${userIndex}`)
-      console.log(user)
       if (user._userDid === currentDid) {
         yield put({
           type: 'USER_NEXT_TAG',
