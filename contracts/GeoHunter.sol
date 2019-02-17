@@ -4,8 +4,8 @@ import "../node_modules/openzeppelin-solidity/contracts/ownership/Ownable.sol";
 import "../node_modules/openzeppelin-solidity/contracts/lifecycle/Pausable.sol";
 
 /// @title ETHdenver 2019 Project: GeoHunter
-/// @dev Contract Project will inherit the contracts Ownable and Pausable from the OpenZeppelin libarary
-/// @dev Pausable is a circuit breaker which blocks all contract functions expect withdrawl by the owner 
+/// @dev Contract Project will inherit the contracts Ownable and Pausable from the OpenZeppelin library
+/// @dev Pausable is a circuit breaker which blocks all contract functions expect withdrawal by the owner 
 contract GeoHunter is Ownable, Pausable {
 
     // Global variables
@@ -176,7 +176,7 @@ contract GeoHunter is Ownable, Pausable {
 
     /// @dev Register users with a unique index number and associated username
     /// @param _userDid User's uPort DID code
-    /// @param _username User's Uport username
+    /// @param _username User's uPort username
     function registerUser(
         string memory _userDid,
         string memory _username)
