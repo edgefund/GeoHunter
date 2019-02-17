@@ -1,19 +1,18 @@
 import Web3 from 'web3';
-import quorumConfig from './quorumConfig';
-
-
-console.log(quorumConfig.providerEndpoint);
+import quorumConfig from './quorumConfig'
 
 const web3 = new Web3(quorumConfig.providerEndpoint);
+const privateKey = quorumConfig.privateKey;
+const fromAddress = quorumConfig.publicKey;
 
 export async function sendTx (tx) {
   let txObject = {
     gas: estimateGas(),
     data: tx.encodeABI(),
-    from: quorumConfig.publicKey
+    from: fromAddress
   };
 
-  let signedTx = await web3.eth.accounts.signTransaction(txObject, quorumConfig.privateKey);
+  let signedTx = await web3.eth.accounts.signTransaction(txObject, privateKey);
 
   return web3.eth.sendSignedTransaction(signedTx.rawTransaction)
   .on("transactionHash", (txHash) => {

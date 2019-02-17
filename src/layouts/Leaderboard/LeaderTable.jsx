@@ -50,9 +50,12 @@ export default class LeaderTable extends Component {
   render() {
     let { leaderObjectArray } = this.props;
 
-    let sortedData = leaderObjectArray.sort(this.sortTimeAcsencing)
+    let sortedLeaderData = leaderObjectArray.sort(this.sortTimeAcsencing)
+
+    const leaderboardData = sortedLeaderData.filter(leaderData => leaderData.bDiff > 0);
+    const unfinishedData = sortedLeaderData.filter(leaderData => leaderData.bDiff <= 0);
     
-    const leaderCells = sortedData.map((data, index) =>
+    const leaderCells = sortedLeaderData.map((data, index) =>
       <LeaderCell
         name={data._username}
         time={this.timeString(data._endTime - data._startTime)}
