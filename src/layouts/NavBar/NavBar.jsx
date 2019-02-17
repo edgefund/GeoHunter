@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './NavBar.css'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import Spinner from './Spinner.jsx'
 
 const StyledNavBar = styled.div`
   display: flex;
@@ -44,22 +45,6 @@ const StyledNavBar = styled.div`
       color: #FE5F55;
     }
   }
-
-  /* &:hover {
-    color: white;
-    border: white;
-    background: ${props => props.color || "black"};
-  }
-
-  &:active {
-    box-shadow: 0 0 .1rem .2rem rgba(0,0,0,.4);
-    transform: scale(.99);
-
-  }
-
-  &:focus {
-    outline:0;
-  } */
 `
 
 export default class NavBar extends Component {
@@ -69,7 +54,7 @@ export default class NavBar extends Component {
 
   render() {
     const { activeItem } = this.state
-    const { userData, onLoginUserClick, onLogoutUserClick } = this.props
+    const { userData, onLoginUserClick, onLogoutUserClick, loggingIn } = this.props
 
     const loginButton = ( !userData ) ? (
       <div 
@@ -88,14 +73,18 @@ export default class NavBar extends Component {
     )
 
     return (
-      <StyledNavBar>
-        <Link to="/">
-          <div className="h1">
-              GEO HUNTER
-          </div>
-        </Link>
-        {loginButton}
-      </StyledNavBar>
+      <React.Fragment>
+        <Spinner hide={!loggingIn}/> 
+        <StyledNavBar>
+          <Link to="/">
+            <div className="h1">
+                GEO HUNTER
+            </div>
+          </Link>
+          {loginButton}
+        </StyledNavBar>
+      </React.Fragment>
+
     )
   }
 }
