@@ -32,18 +32,16 @@ export default class MiniGame extends Component {
     render() {
         return (
             <div>
-                <NavBar />
-                <div>
-                    { this.state.showQrScanner ?
-                        <QrReader
-                            delay={this.state.delay}
-                            onError={this.handleError}
-                            onScan={this.handleScan}
-                            style={{ width: 250 }}
-                        /> :
-                        this.state.result
-                    }
-                </div>
+                { this.state.showQrScanner ?
+                    <QrReader
+                        delay={this.state.delay}
+                        onError={this.handleError}
+                        onScan={this.handleScan}
+                        style={{ width: 500 }}
+                    /> :
+                    this.state.result
+                }
+                <p>{this.state.result}</p>
             </div>
         );
     }
