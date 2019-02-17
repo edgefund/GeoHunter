@@ -22,7 +22,6 @@ function* pollLeaderboard() {
 
     let numUsersObj = yield call(getTotalUsers);
     let numUsers = numUsersObj._totalUsers
-    console.log(numUsers)
 
     for (let userIndex = 1; userIndex <= numUsers; userIndex++) {
       // Pull data

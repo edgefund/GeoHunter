@@ -41,6 +41,10 @@ export default class LeaderTable extends Component {
     return aDiff - bDiff;
   }
 
+  sortLevelDesending = (a, b) => {
+    return b._progress - a._progress;
+  }
+
   timeString = (seconds) => {
     let secs = seconds % 60;
     let mins = Math.floor(seconds/60);
@@ -51,21 +55,31 @@ export default class LeaderTable extends Component {
     let { leaderObjectArray } = this.props;
 
     let sortedLeaderData = leaderObjectArray.sort(this.sortTimeAcsencing)
-
+    
     const leaderboardData = sortedLeaderData.filter(leaderData => leaderData.bDiff > 0);
     const unfinishedData = sortedLeaderData.filter(leaderData => leaderData.bDiff <= 0);
+    let unfinishedLeaderboardData = unfinishedData.sort(this.sortLevelDesending)
     
-    const leaderCells = sortedLeaderData.map((data, index) =>
+    const leaderCells = leaderboardData.map((data, index) =>
       <LeaderCell
         name={data._username}
         time={this.timeString(data._endTime - data._startTime)}
         key={index}
       />
-  );
+    );
+
+    const unfinishedLeaderCells = unfinishedLeaderboardData.map((data, index) =>
+      <LeaderCell
+        name={data._username}
+        progress={data._progress}
+        key={index}
+      />
+    );
 
     return (
       <StyledLeaderTable>
         {leaderCells}
+        {unfinishedLeaderCells}
       </StyledLeaderTable>
     )
   }
