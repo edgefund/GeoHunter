@@ -37,7 +37,7 @@ class MiniGame extends Component {
         if (!isLoggedIn) {
             return <div><NavBarContainer /><ShowModal /></div>
         } else {
-            return <ShowMiniGame />
+            return <div><NavBarContainer /><ShowMiniGame /></div>
         }
     }
 }
