@@ -251,4 +251,54 @@ contract GeoHunter is Ownable, Pausable {
         _totalScans = totalScans;
     }
 
+    /// @dev Returns the requested user data by index
+    function getUser(uint32 _userIndex)
+        public
+        view
+        returns (
+        string memory _userDid,
+        string memory _username,
+        uint8 _progress,
+        uint _startTime,
+        uint _endTime)
+        {
+        _userDid = userList[_userIndex].userDid;
+        _username = userList[_userIndex].username;
+        _progress = userList[_userIndex].progress;
+        _startTime = userList[_userIndex].startTime;
+        _endTime = userList[_userIndex].endTime;
+    }
+
+    /// @dev Returns the requested tag data by index
+    function getTag(uint32 _tagIndex)
+        public
+        view
+        returns (
+        string memory _Uid,
+        string memory _ipfsHash,
+        string memory _lat,
+        string memory _long)
+        {
+        _Uid = tagList[_tagIndex].Uid;
+        _ipfsHash = tagList[_tagIndex].ipfsHash;
+        _lat = tagList[_tagIndex].lat;
+        _long = tagList[_tagIndex].long;
+    }
+
+    /// @dev Returns the requested scan data by index
+    function getScan(uint32 _scanIndex)
+        public
+        view
+        returns (
+        string memory _userDid,
+        string memory _username,
+        string memory _tagUid,
+        uint _timestamp)
+        {
+        _userDid = scanList[_scanIndex].userDid;
+        _username = scanList[_scanIndex].username;
+        _tagUid = scanList[_scanIndex].tagUid;
+        _timestamp = scanList[_scanIndex].timestamp;
+    }
+
 }
