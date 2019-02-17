@@ -1,19 +1,30 @@
-// let tx = this.contractname.methods.dosomething(parameters);
-let quorumConfig = require('../quorumConfig')
+import Web3 from 'web3';
+const web3 = new Web3("http://ec2-34-220-53-37.us-west-2.compute.amazonaws.com:22000");
+const quorumConfig = require('../quorumConfig');
+const privateKey = quorumConfig.privateKey;
+const fromAddress = quorumConfig.publicKey;
 
-let sendTx = async (tx, web3, contractAddress) => {
+export async function sendTx (tx) {
   let txObject = {
-    gas: 50000,
+    gas: estimateGas(),
     data: tx.encodeABI(),
-    from: quorumConfig.publicKey,
-    to: contractAddress
+    from: fromAddress
   };
 
-  let signedTx = await web3.eth.accounts.signTransaction(txObject, quorumConfig.privateKey);
+  let signedTx = await web3.eth.accounts.signTransaction(txObject, privateKey);
   return web3.eth.sendSignedTransaction(signedTx.rawTransaction)
-    .catch(e => {
-      return Promise.reject();
-    });
+  .on("transactionHash", (txHash) => { 
+    console.log("signAndSendTx() TxHash: " + txHash)
+  })
+  .on('confirmation', (confirmationNumber, receipt) => {})
+  .on('receipt', (txReceipt) => { 
+    console.log("signAndSendTx success. Tx Address: " + txReceipt.transactionHash);
+  })
+  .catch(e => {
+    return Promise.reject();
+  });
 }
 
-export default sendTx
+function estimateGas() {
+  return 0xFFFFF;
+}

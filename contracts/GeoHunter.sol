@@ -57,7 +57,7 @@ contract GeoHunter is Ownable, Pausable {
         //  Hardcoded details for Tag index 1 (tag UID, IPFS hash, and location latitude and longitude)
         tagIndex["16199909d0b5fd"] = 1; // Replace with actual UID
         tagList[1].Uid = "16199909d0b5fd"; // Replace with actual UID
-        tagList[1].ipfsHash = "1mWWQSuPMS6aXCbZKpEjPHPUZN2NjB3YrhJTHsV4X3vb2t";
+        tagList[1].ipfsHash = "1mWWQSuPMS6aXCbZKpEjPHPUZN2NjB3YrhJTHsV4X3vb2t"; // Replace with actual IPFS hash
         tagList[1].lat = "";
         tagList[1].long = "";
 
@@ -95,7 +95,9 @@ contract GeoHunter is Ownable, Pausable {
     } 
 
     /// @dev The owner can add ETH to the contract when the contract is not paused
-    function addBalance() public payable 
+    function addBalance() 
+        public
+        payable 
         onlyOwner
         whenNotPaused {
         emit balanceNowUpdated(address(this).balance);   
@@ -103,7 +105,8 @@ contract GeoHunter is Ownable, Pausable {
 
     /// @dev The owner can withdraw ETH from the contract when the contract is not paused
     /// @param amount Value to be withdrawn in wei
-    function withdrawBalance (uint256 amount) public 
+    function withdrawBalance (uint256 amount) 
+        public 
         onlyOwner
         whenNotPaused {
         msg.sender.transfer(amount);
@@ -143,7 +146,12 @@ contract GeoHunter is Ownable, Pausable {
     /// @dev Register users with a unique index number and associated username
     /// @param _userDid User's uPort DID code
     /// @param _username User's Uport username
-    function registerUser(string memory _userDid, string memory _username) public returns (bool) {
+    function registerUser(
+        string memory _userDid,
+        string memory _username)
+        public 
+        returns (bool)
+        {
         require(userIndex[_userDid] == 0, "User already registered");
         totalUsers++;
         userIndex[_userDid] = totalUsers;
@@ -162,7 +170,13 @@ contract GeoHunter is Ownable, Pausable {
     /// @param _userDid User's uPort DID code
     /// @param _username User's uPort username
     /// @param _tagUid Tag UID code 
-    function scanTag(string memory _userDid, string memory _username, string memory _tagUid) public returns (bool) {
+    function scanTag(
+        string memory _userDid,
+        string memory _username,
+        string memory _tagUid)
+        public
+        returns (bool)
+        {
         if (userIndex[_userDid] == 0) {
             require(registerUser(_userDid, _username), "User already registered"); // Register user if not already registered
         }
@@ -193,7 +207,14 @@ contract GeoHunter is Ownable, Pausable {
     /// @param _userDid User's uPort DID code
     /// @param _nextTagIndex The index number for the next tag the user requires (1 to 5; 6 means user is done)
     /// @param _nextTagUid Tag UID code for the next tag the user requires
-    function nextTagRequired(string memory _userDid) public view returns (uint32 _nextTagIndex, string memory _nextTagUid, bool _success) {
+    function nextTagRequired(string memory _userDid)
+        public
+        view
+        returns (
+        uint32 _nextTagIndex,
+        string memory _nextTagUid,
+        bool _success)
+        {
         require(userIndex[_userDid] > 0, "User not registered");
         _nextTagIndex = userList[userIndex[_userDid]].progress + 1;
         _nextTagUid = tagList[_nextTagIndex].Uid;
@@ -202,19 +223,31 @@ contract GeoHunter is Ownable, Pausable {
 
     /// @dev Returns the current total number of tags registered
     /// @param _totalTags Current total number of tags registered
-    function getTotalTags() public view returns (uint32 _totalTags) {
+    function getTotalTags()
+        public
+        view
+        returns (uint32 _totalTags)
+        {
         _totalTags = totalTags;
     }
 
     /// @dev Returns the current total number of users registered
     /// @param _totalUsers Current total number of users registered
-    function getTotalUsers() public view returns (uint32 _totalUsers) {
+    function getTotalUsers()
+        public
+        view
+        returns (uint32 _totalUsers)
+        {
         _totalUsers = totalUsers;
     }
 
     /// @dev Returns the current total number of scans
     /// @param _totalScans Current total number of scans
-    function getTotalScans() public view returns (uint32 _totalScans) {
+    function getTotalScans()
+        public
+        view
+        returns (uint32 _totalScans)
+        {
         _totalScans = totalScans;
     }
 

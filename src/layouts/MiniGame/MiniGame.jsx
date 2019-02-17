@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import NavBar from '../NavBar'
+import NavBarContainer from '../NavBar/NavBarContainer.jsx'
 import Game from './Game.jsx'
+import { connect } from 'react-redux';
 
 function ShowModal(props) {
     return (
@@ -12,21 +13,33 @@ function ShowModal(props) {
 }
 
 function ShowMiniGame(props) {
-    <div>
+    return (<div>
         <Game />
-    </div>
+    </div>)
 }
 
-export default class MiniGame extends Component {
+const mapStateToProps = (state) => {
+  return {
+      user: state.user
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {}
+}
+
+class MiniGame extends Component {
     state = {}
 
     render() {
-        const isLoggedIn = this.props.user.name != undefined;
+        const isLoggedIn = this.props.user.data && this.props.user.data.name != undefined;
 
         if (!isLoggedIn) {
-            return <ShowModal />
+            return <div><NavBarContainer /><ShowModal /></div>
         } else {
             return <ShowMiniGame />
         }
     }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(MiniGame)
