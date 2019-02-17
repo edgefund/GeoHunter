@@ -28,7 +28,6 @@ class QRScanner extends Component {
     handleScan(data) {
         if (data) {
             this.props.gotQRData(data);
-<<<<<<< HEAD
             const tagId = 0;
 
             let urlSplit = data.split('/')
@@ -39,8 +38,6 @@ class QRScanner extends Component {
             // TODO invalid data
             return
             }
-=======
->>>>>>> 44584adfb520cc83f0b678ecfcc7b5bb5dc47067
         }
 
         return;

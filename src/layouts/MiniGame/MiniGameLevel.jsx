@@ -1,10 +1,6 @@
 import React, { Component } from 'react'
-<<<<<<< HEAD
 import styled from 'styled-components'
 import { connect } from 'react-redux'
-=======
-import { connect } from 'react-redux';
->>>>>>> 44584adfb520cc83f0b678ecfcc7b5bb5dc47067
 import QRScanner from './QRScanner.jsx'
 import { scanTag } from '../../provider/geohunterContract'
 
@@ -45,7 +41,6 @@ class MiniGameLevel extends Component {
   }
 
   render() {
-<<<<<<< HEAD
     let { progress, user } = this.props 
     let { hideQr } = this.state
 
@@ -57,16 +52,6 @@ class MiniGameLevel extends Component {
           hide={hideQr}
           scannedObject={(id) => this.scannedId(id)}
         />
-=======
-    let { progress } = this.props
-
-    return (
-      <div>
-        <QRScanner
-          hide={false}
-        />
-        <h1>Next Level: {parseInt(progress, 10) + 1 }!</h1>
->>>>>>> 44584adfb520cc83f0b678ecfcc7b5bb5dc47067
       </div>
     )
   }
