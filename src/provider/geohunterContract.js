@@ -26,8 +26,8 @@ export async function registerUser(_userDid, _username) {
   return sendTx(tx);
 }
 
-export async function getUser(_userIdex) {
-  let x = await contract.methods.getUser(_userIdex).call();
+export async function getUser(_userIndex) {
+  let x = await contract.methods.getUser(_userIndex).call();
   let result = {
     _userDid: x._userDid,
     _username: x._username,
