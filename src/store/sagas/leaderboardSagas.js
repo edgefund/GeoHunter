@@ -12,7 +12,7 @@ export const getCurrentUserDid = (state) => {
 // watcher saga: watches for actions dispatched to the store, starts worker saga
 export function* leaderboardSagas() {
   yield call(pollLeaderboard)
-  yield takeLatest(pollLeaderboard)
+  yield takeLatest('POLL_LEADERBOARD', pollLeaderboard)
 }
 
 // function that makes the api request and returns a Promise for response
@@ -27,7 +27,7 @@ function* pollLeaderboard() {
     for (let userIndex = 1; userIndex <= numUsers; userIndex++) {
       // Pull data
       let user = yield call(getUser, userIndex);
-      console.log('user')
+      console.log(`userIndex: ${userIndex}`)
       console.log(user)
       if (user._userDid === currentDid) {
         yield put({
