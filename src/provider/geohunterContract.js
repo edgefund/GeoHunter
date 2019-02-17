@@ -1,13 +1,12 @@
 import Web3 from 'web3';
 import { sendTx } from './signSendTx';
-
 import web3Options from './web3Options'
 import quorumConfig from './quorumConfig'
 
 const web3 = new Web3(quorumConfig.providerEndpoint);
 
 const contract = web3.eth.Contract(
-  web3Options.contracts.GeoHunter.abi, 
+  web3Options.contracts.GeoHunter.abi,
   web3Options.contracts.GeoHunter.address
 );
 
@@ -40,7 +39,7 @@ export async function getUser(_userIdex) {
 
 export async function scanTag(_userDid, _username, _tagUid) {
   let tx = contract.methods.scanTag(_userDid, _username, _tagUid);
-  return sendTx(tx);
+  return await sendTx(tx);
 }
 
 // returns Promise<{_nextTagIndex, _nextTagUid, _success}>

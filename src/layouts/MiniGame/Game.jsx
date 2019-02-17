@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import QrReader from "react-qr-reader";
 import { connect } from 'react-redux';
-import { scanTag } from '../../helpers/geohunter-contract';
+import { scanTag } from '../../provider/geohunterContract'
 
 const mapStateToProps = (state) => {
     return {
