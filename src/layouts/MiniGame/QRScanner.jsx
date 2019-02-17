@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import QrReader from "react-qr-reader";
 import { connect } from 'react-redux';
+import { scanTag } from '../../provider/geohunterContract';
 
 const mapStateToProps = (state) => {
     return {
@@ -20,6 +21,7 @@ class QRScanner extends Component {
         super(props);
         this.state = {
             delay: 300,
+            showQRScanner: true
         };
 
         this.handleScan = this.handleScan.bind(this);
@@ -27,7 +29,18 @@ class QRScanner extends Component {
 
     handleScan(data) {
         if (data) {
+            let { scannedObject } = this.props;
             this.props.gotQRData(data);
+
+            this.setState({ showQRScanner: false }, async () => await scanTag (
+                this.props.user.data.did,
+                this.props.user.data.name,
+                data
+            ));
+
+            setTimeout(() => {
+                this.setState({ showQRScanner: true })
+            }, 3000);
         }
 
         return;
@@ -38,20 +51,18 @@ class QRScanner extends Component {
     }
 
     render() {
-        let { hide } = this.props
-
-        let displayType = 'inherit'
-        if(hide === true) {
-            displayType = 'none'
-        }
-
         return (
-            <QrReader
-                delay={this.state.delay}
-                onError={this.handleError}
-                onScan={this.handleScan}
-                style={{ width: "100%", display: displayType }}
-            />
+            <div>
+                { this.state.showQRScanner ?
+                    <QrReader
+                        delay={this.state.delay}
+                        onError={this.handleError}
+                        onScan={this.handleScan}
+                        style={{ width: "100%" }}
+                    /> : <p>Successfully scanned!</p>
+
+                }
+            </div>
         )
     }
 }
