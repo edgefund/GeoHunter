@@ -1,4 +1,4 @@
-import { takeEvery, call, put, delay, select } from "redux-saga/effects";
+import { takeLatest, call, put, delay, select } from "redux-saga/effects";
 import { getUser, getTotalUsers } from '../../provider/geohunterContract'
 
 export const getCurrentUserDid = (state) => {
@@ -10,7 +10,7 @@ export const getCurrentUserDid = (state) => {
 
 export function* leaderboardSagas() {
   yield call(pollLeaderboard)
-  yield takeEvery('POLL_LEADERBOARD', pollLeaderboard)
+  yield takeLatest('POLL_LEADERBOARD', pollLeaderboard)
 }
 
 function* pollLeaderboard() {
