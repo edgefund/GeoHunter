@@ -1,9 +1,5 @@
 import React, { Component } from 'react'
 import NavBarContainer from '../NavBar/NavBarContainer.jsx'
-<<<<<<< HEAD
-=======
-import Game from './QRScanner.jsx';
->>>>>>> 82bde4280b2b9e048fc961a2c57bd7814e10c676
 import { connect } from 'react-redux';
 
 import GameInProgress from './GameInProgress.jsx'
