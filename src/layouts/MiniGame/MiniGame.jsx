@@ -17,9 +17,16 @@ function ShowModal(props) {
 }
 
 const mapStateToProps = (state) => {
+    let progress
+    if(state.user.data) {
+        progress = state.user.data._progress
+    } else {
+        progress = 0
+    }
+
     return {
         user: state.user,
-        progress: state.user.data._progress,
+        progress,
     }
 }
 
