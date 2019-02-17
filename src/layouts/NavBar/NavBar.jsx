@@ -16,7 +16,6 @@ const StyledNavBar = styled.div`
   padding-left: 2rem;
   padding-right: 5rem;
   box-shadow: .2rem 1rem 1rem .1rem rgba(0,0,0,0.56); 
-  text-decoration: none;
 
   & div {
     vertical-align: center;
@@ -25,7 +24,6 @@ const StyledNavBar = styled.div`
 
   & .h1 {
     font-size: 3rem;
-    
 
     &:active {
       color: #FE5F55;
@@ -78,7 +76,10 @@ export default class NavBar extends Component {
       <React.Fragment>
         <Spinner hide={!loggingIn}/> 
         <StyledNavBar>
-          <Link to="/">
+          <Link 
+            to="/"
+            style={{textDecoration: 'none'}}
+          >
             <div className="h1">
                 GEO HUNTER
             </div>

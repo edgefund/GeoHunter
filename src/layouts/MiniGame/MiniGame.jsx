@@ -1,10 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import NavBar from '../NavBar/NavBar.jsx'
-<<<<<<< HEAD
-=======
-
->>>>>>> c63605545476aa5aa1703d5066c3471e81f49de8
 import Game from './Game.jsx'
 import { connect } from 'react-redux';
 
