@@ -4,16 +4,8 @@ import { scanTag } from '../../provider/geohunterContract'
 import QRScanner from './QRScanner.jsx'
 import MiniGameLevel from './MiniGameLevel.jsx'
 
-class GameInProgress extends Component {
 
-  handleScanId(id){
-    let { userData } = this.props;
-    scanTag(
-      userData._userDid, 
-      userData._userName,
-      id
-    )
-  }
+class GameInProgress extends Component {
 
   componentDidMount() {
     this.props.getIPFSImage();
@@ -22,7 +14,6 @@ class GameInProgress extends Component {
   render() {
     return (
       <div>
-        <QRScanner scannedObject={(id) => this.handleScanId(id)}/>
         <MiniGameLevel />
       </div>
     );
@@ -43,4 +34,4 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(GameInProgress);
+export default connect(mapStateToProps, mapDispatchToProps)(GameInProgress);                                                                                                                                                                                                                                                                                                                   

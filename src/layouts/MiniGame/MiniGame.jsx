@@ -1,14 +1,28 @@
 import React, { Component } from 'react'
 import NavBarContainer from '../NavBar/NavBarContainer.jsx'
 import { connect } from 'react-redux';
+import styled from 'styled-components'
 
 import GameInProgress from './GameInProgress.jsx'
 
+let StyledModel = styled.div`
+    padding-top: 10rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    & .top {
+        font-weight: bold;
+    }
+`
+
 function ShowModal(props) {
     return (
-        <div>
-            <p>Please Log In to Access the Mini-Game</p>
-        </div>
+        <StyledModel>
+            <h1 className='top'>Please Log In</h1>
+            <h1 className='bottom'>Access the Mini-Game</h1>
+        </StyledModel>
     )
 }
 

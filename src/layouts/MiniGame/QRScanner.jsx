@@ -54,12 +54,11 @@ class QRScanner extends Component {
             <div>
                 { this.state.showQRScanner ?
                     <div>
-                        <p>Go to Level { this.props.user.nextTag }</p>
                         <QrReader
                             delay={this.state.delay}
                             onError={this.handleError}
                             onScan={this.handleScan}
-                            style={{ width: "100%" }}
+                            // style={{ width: "100%" }}
                         />
                     </div> : <p>Successfully scanned!</p> }
             </div>
