@@ -45,7 +45,7 @@ class QRScanner extends Component {
         return;
     }
 
-    handleError(err) {
+    handleError = (err) => {
         console.error(err);
     }
 

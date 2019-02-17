@@ -2,7 +2,7 @@ import { takeEvery, call, put, select } from "redux-saga/effects";
 import { nextTagRequired } from '../../provider/geohunterContract'
 
 export function* minigameSaga() {
-    // yield takeLatest('GET_IPFS_IMAGE', getIpfsImageHash)
+    yield takeEvery('GET_IPFS_IMAGE', getIpfsImageHash)
 }
 
 export const getCurrentUserDid = (state) => {
@@ -19,7 +19,10 @@ export function* getIpfsImageHash() {
 
   const tag = yield call(nextTagRequired, currentDid);
 
-  console.log('What is tag?:', tag);
-
-  yield put({type: 'GOT_IPFS_IMAGE', payload: tag._ipfsHash.toString()});
+  if(tag) {
+    console.log('What is tag?:', tag);
+    if(tag._ipfsHash) {
+      yield put({type: 'GOT_IPFS_IMAGE', payload: tag._ipfsHash.toString()});
+    } 
+  }
 }

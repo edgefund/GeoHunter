@@ -53,6 +53,7 @@
   "dependencies": {
     "bnc-assist": "^0.3.4",
     "flipclock": "^0.10.0",
+    "ngrok": "^3.1.1",
     "openzeppelin-solidity": "^2.1.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
