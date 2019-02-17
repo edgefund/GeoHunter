@@ -31,7 +31,6 @@ const quickspin = keyframes`
   }
 `
 
-
 const StyledSpinner = styled.div`
   display: ${props => props.hide ? 'none ': 'inline'};
   background: transparent;
