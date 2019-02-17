@@ -1,32 +1,49 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
-import NavBar from '../NavBar/NavBar.jsx';
 import QrReader from "react-qr-reader";
+import { connect } from 'react-redux';
+import { scanTag } from '../../helpers/geohunter-contract';
 
-export default class MiniGame extends Component {
+const mapStateToProps = (state) => {
+    return {
+        minigame: state.minigame,
+        user: state.user.data
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        gotQRData: (data) => dispatch({type: 'GOT_QR_DATA', payload: data})
+    }
+}
+
+class Game extends Component {
     constructor(props) {
         super(props);
         this.state = {
             delay: 300,
-            result: "No result",
             showQrScanner: true
         };
+
         this.handleScan = this.handleScan.bind(this);
     }
 
     handleScan(data) {
         if (data) {
-            console.log(data);
-            window.qrresult = data;
-            this.setState({
-                result: data,
-                showQrScanner: false
-            });
+            this.props.gotQRData(data);
+
+            this.setState(
+                { showQrScanner: false },
+                async () => await scanTag(this.props.user.did, this.props.user.name, data)
+            );
         }
     }
 
     handleError(err) {
         console.error(err);
+    }
+
+    componentDidMount() {
+        console.log(scanTag);
     }
 
     render() {
@@ -38,10 +55,11 @@ export default class MiniGame extends Component {
                         onError={this.handleError}
                         onScan={this.handleScan}
                         style={{ width: 500 }}
-                    /> :
-                    this.state.result
+                    /> : this.props.minigame.QRData
                 }
             </div>
         );
     }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Game);

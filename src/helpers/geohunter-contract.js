@@ -2,7 +2,7 @@ import Web3 from 'web3';
 import { sendTx } from './signSendTx';
 
 const web3 = new Web3("http://ec2-34-220-53-37.us-west-2.compute.amazonaws.com:22000");
-const GeoHunter = require('../build/contracts/GeoHunter.json');
+const GeoHunter = require('../../build/contracts/GeoHunter.json');
 const contract_address = '';
 const contract = web3.eth.Contract(GeoHunter.abi, contract_address);
 
@@ -17,9 +17,10 @@ export async function registerUser(_userDid, _username) {
   return sendTx(tx);
 }
 
-export async function scanTag(_userDid, _username, _tagUid) {
-  let tx = contract.methods.scanTag(_userDid, _username, _tagUid);
-  return sendTx(tx);
+export function scanTag(_userDid, _username, _tagUid) {
+  console.log('scanning...')
+  // let tx = contract.methods.scanTag(_userDid, _username, _tagUid);
+  // return sendTx(tx);
 }
 
 // returns Promise<{_nextTagIndex, _nextTagUid, _success}>
