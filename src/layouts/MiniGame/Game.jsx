@@ -1,27 +1,44 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
-import NavBar from '../NavBar/NavBar.jsx';
 import QrReader from "react-qr-reader";
+import { connect } from 'react-redux';
+import { scanTag } from '../../helpers/geohunter-contract';
 
-export default class MiniGame extends Component {
+const mapStateToProps = (state) => {
+    return {
+        minigame: state.minigame,
+        user: state.user
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        gotQRData: (data) => dispatch({type: 'GOT_QR_DATA', payload: data})
+    }
+}
+
+class Game extends Component {
     constructor(props) {
         super(props);
         this.state = {
             delay: 300,
-            result: "No result",
             showQrScanner: true
         };
+
         this.handleScan = this.handleScan.bind(this);
     }
 
     handleScan(data) {
         if (data) {
-            console.log(data);
-            window.qrresult = data;
-            this.setState({
-                result: data,
-                showQrScanner: false
-            });
+            this.props.gotQRData(data);
+
+            this.setState(
+                { showQrScanner: false },
+                async () => await scanTag(this.props.user.data.did, this.props.user.data.name, data)
+            );
+
+            setTimeout(() => {
+                this.setState({ showQrScanner: true });
+            }, 3000);
         }
     }
 
@@ -33,16 +50,23 @@ export default class MiniGame extends Component {
         return (
             <div>
                 { this.state.showQrScanner ?
-                    <QrReader
-                        delay={this.state.delay}
-                        onError={this.handleError}
-                        onScan={this.handleScan}
-                        style={{ width: 500 }}
-                    /> :
-                    this.state.result
+                    <div>
+                        Go to Level {this.props.user.nextTag}
+                    </div> : null
                 }
-                <p>{this.state.result}</p>
+                <div>
+                    { this.state.showQrScanner ?
+                        <QrReader
+                            delay={this.state.delay}
+                            onError={this.handleError}
+                            onScan={this.handleScan}
+                            style={{ width: "100%" }}
+                        /> : <p>Successfully Scanned!</p>
+                    }
+                </div>
             </div>
         );
     }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Game);

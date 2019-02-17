@@ -1,14 +1,14 @@
 const initialState = {
   data: null,
   loggingIn: false,
-  nextTag: null,
-  
+  nextTag: 1,
+
 }
 
 const userReducer = (state = initialState, action) => {
   if (action.type === 'USER_LOGGED_IN')
   {
-    // TODO: Add nextTag? 
+    // TODO: Add nextTag?
     return Object.assign({}, state, {
       data: action.payload,
       loggingIn: false,

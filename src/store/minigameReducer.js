@@ -1,11 +1,10 @@
 const initialState = {
     QRData: {},
-    chainData: {},
-    userLoggedIn: false
+    chainData: {}
 }
 
 const minigameReducer = (state = initialState, action) => {
-    if (action.type === 'QRCODE_SCANNED') {
+    if (action.type === 'GOT_QR_DATA') {
         return Object.assign({}, state, {
             QRData: action.payload
         });
