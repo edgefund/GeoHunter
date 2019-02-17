@@ -5,14 +5,14 @@ import "../node_modules/openzeppelin-solidity/contracts/lifecycle/Pausable.sol";
 
 /// @title ETHdenver 2019 Project: GeoHunter
 /// @dev Contract Project will inherit the contracts Ownable and Pausable from the OpenZeppelin library
-/// @dev Pausable is a circuit breaker which blocks all contract functions expect withdrawal by the owner 
+/// @dev Pausable is a circuit breaker which blocks all contract functions expect withdrawal by the owner
 contract GeoHunter is Ownable, Pausable {
 
     // Global variables
     uint32 public totalTags;
     uint32 public totalUsers;
     uint32 public totalScans;
-    
+
     // Events
     event balanceNowUpdated(uint256 _newBalance);
     event tagNowRegistered(uint32 _tagIndex, string _tagUid, string _ipfsHash, string _lat, string _long);
@@ -23,7 +23,7 @@ contract GeoHunter is Ownable, Pausable {
     // Structs & Mappings
     struct Tag {
         string Uid;
-        string ipfsHash; // Could be a hash of a picture of the tag location 
+        string ipfsHash; // Could be a hash of a picture of the tag location
         string lat;
         string long;
     }
@@ -117,31 +117,31 @@ contract GeoHunter is Ownable, Pausable {
 
     /// @dev Fallback function
     function () external payable {
-    } 
+    }
 
     /// @dev The owner can add ETH to the contract when the contract is not paused
-    function addBalance() 
+    function addBalance()
         public
-        payable 
+        payable
         onlyOwner
         whenNotPaused {
-        emit balanceNowUpdated(address(this).balance);   
+        emit balanceNowUpdated(address(this).balance);
     }
 
     /// @dev The owner can withdraw ETH from the contract when the contract is not paused
     /// @param amount Value to be withdrawn in wei
-    function withdrawBalance (uint256 amount) 
-        public 
+    function withdrawBalance (uint256 amount)
+        public
         onlyOwner
         whenNotPaused {
         msg.sender.transfer(amount);
-        emit balanceNowUpdated(address(this).balance);  
+        emit balanceNowUpdated(address(this).balance);
     }
 
-    /// @dev Register tags with a particular index number and IPFS hash 
-    /// @param _tagIndex Desired Tag Index - will overwrite previous tag registered to that index if existing 
+    /// @dev Register tags with a particular index number and IPFS hash
+    /// @param _tagIndex Desired Tag Index - will overwrite previous tag registered to that index if existing
     ///     An index of 0 will create a new tag and increment the total tag count
-    /// @param _tagUid Tag UID code 
+    /// @param _tagUid Tag UID code
     /// @param _ipfsHash IPFS hash associated with the tag (could be a hash of a picture of the tag location)
     /// @param _lat Location (latitude) of tag
     /// @param _long Location (longitude) of tag
@@ -150,7 +150,7 @@ contract GeoHunter is Ownable, Pausable {
         string memory _tagUid,
         string memory _ipfsHash,
         string memory _lat,
-        string memory _long) 
+        string memory _long)
         public
         onlyOwner
         returns (bool)
@@ -181,13 +181,13 @@ contract GeoHunter is Ownable, Pausable {
     function registerUser(
         string memory _userDid,
         string memory _username)
-        public 
+        public
         returns (bool)
         {
         require(userIndex[_userDid] == 0, "User already registered");
         totalUsers++;
         userIndex[_userDid] = totalUsers;
-        
+
         userList[userIndex[_userDid]].userDid = _userDid;
         userList[userIndex[_userDid]].username = _username;
         userList[userIndex[_userDid]].progress = 0;
@@ -214,10 +214,10 @@ contract GeoHunter is Ownable, Pausable {
         return true;
     }
 
-    /// @dev Record the scanning of tags 
+    /// @dev Record the scanning of tags
     /// @param _userDid User's uPort DID code
     /// @param _username User's uPort username
-    /// @param _tagUid Tag UID code 
+    /// @param _tagUid Tag UID code
     function scanTag(
         string memory _userDid,
         string memory _username,
@@ -251,7 +251,7 @@ contract GeoHunter is Ownable, Pausable {
         return true;
     }
 
-    /// @dev Get the index and Uid for the next tag the user requires 
+    /// @dev Get the index and Uid for the next tag the user requires
     /// @param _userDid User's uPort DID code
     /// @param _nextTagIndex The index number for the next tag the user requires (1 to 5; 6 means user is done)
     /// @param _nextTagUid Tag UID code for the next tag the user requires
@@ -268,7 +268,7 @@ contract GeoHunter is Ownable, Pausable {
         _nextTagIndex = userList[userIndex[_userDid]].progress + 1;
         _nextTagUid = tagList[_nextTagIndex].Uid;
         _nextTagIpfsHash = tagList[_nextTagIndex].ipfsHash;
-        
+
         _success = true;
     }
 

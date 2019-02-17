@@ -20,5 +20,5 @@ export function* getIpfsImageHash() {
 
   console.log('What is tag?:', tag);
 
-  yield put({type: 'GOT_IPFS_IMAGE', payload: tag._ipfsHash});
+  yield put({type: 'GOT_IPFS_IMAGE', payload: tag._ipfsHash.toString()});
 }
