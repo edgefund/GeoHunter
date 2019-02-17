@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 import QRScanner from './QRScanner.jsx'
+import { scanTag } from '../../provider/geohunterContract'
+
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user,
+    user: state.user.data,
     progress: state.user.data._progress,
   }
 }
@@ -15,16 +17,42 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 class MiniGameLevel extends Component {
-  state = {}
+  state = {
+    hideQr: false
+  }
+
+  componentDidMount() {
+    const { match: { params } } = this.props;
+
+    console.log(`MiniGameLevel: ${params.tagId}`)
+
+
+  }
+
+  async scannedId(id) {
+    let { user } = this.props;
+    await scanTag(user._userDid, user._username, id)
+
+    this.setState({
+      hideQr: true
+    })
+
+
+  }
 
   render() {
-    let { progress } = this.props 
+    let { progress, user } = this.props 
+    let { hideQr } = this.state
 
     return (
-      <QRScanner 
-        hide={false}
-      />
-      <h1>Next Level: {progress + 1 }!</h1>
+      <div>
+        <h1>Next Level: {progress + 1 }!</h1>
+      
+        <QRScanner 
+          hide={hideQr}
+          scannedObject={(id) => this.scannedId(id)}
+        />
+      </div>
     )
   }
 }

@@ -33,7 +33,7 @@ class QRScanner extends Component {
 
             let urlSplit = data.split('/')
             if(urlSplit.length) {
-                tagId = urlSplit(urlSplit.length - 1)
+                tagId = urlSplit([urlSplit.length - 1])
                 scannedObject(tagId)
             } else {
             // TODO invalid data
