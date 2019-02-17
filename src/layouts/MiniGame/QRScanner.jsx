@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import QrReader from "react-qr-reader";
 import { connect } from 'react-redux';
-import { scanTag } from '../../provider/geohunterContract'
 
 const mapStateToProps = (state) => {
     return {
@@ -28,20 +27,20 @@ class QRScanner extends Component {
 
     handleScan(data) {
         if (data) {
-            let { scannedObject } = this.props 
+            let { scannedObject } = this.props
             this.props.gotQRData(data);
             const tagId = 0;
-            
+
             let urlSplit = scannedObject.split('/')
             if(urlSplit.length) {
                 tagId = urlSplit(urlSplit.length - 1)
                 scannedObject(tagId)
             } else {
             // TODO invalid data
-            return 
+            return
             }
         }
-        return 
+        return
     }
 
     handleError(err) {

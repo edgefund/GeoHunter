@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import NavBarContainer from '../NavBar/NavBarContainer.jsx'
-import Game from './QRScanner.jsx/index.js'
+import Game from './QRScanner.jsx';
 import { connect } from 'react-redux';
 
 function ShowModal(props) {
@@ -19,10 +19,15 @@ function ShowMiniGame(props) {
 
 function ShowClock(props) {
     return (<div>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.min.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.min.css"
+        />
+
         Clock: <div class="your-clock"></div>
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.min.js">
+        </script>
         <script>
             var clock = $('.your-clock').FlipClock({
                 // ... your options here
@@ -37,11 +42,17 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return {}
+    return {
+        getIPFSImage: () => dispatch({type: 'GET_IPFS_IMAGE'})
+    }
 }
 
 class MiniGame extends Component {
     state = {}
+
+    componentDidMount() {
+        this.props.getIPFSImage();
+    }
 
     render() {
         const isLoggedIn = this.props.user.data && this.props.user.data.name !== undefined;
@@ -49,7 +60,7 @@ class MiniGame extends Component {
         if (!isLoggedIn) {
             return <div><NavBarContainer /><ShowModal /></div>
         } else {
-            return <div><NavBarContainer /><ShowMiniGame/></div>
+            return <div><NavBarContainer /><ShowMiniGame /></div>
         }
     }
 }
