@@ -36,21 +36,23 @@ const StyledSpinner = styled.div`
   background: transparent;
   color: white;
   position: fixed;
-  top: 40vh;
-  left: 50vw;
-  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
 
   & .spinner-bg {
+    position: relative;
+    top: 40vh;
+    margin: auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 400px;
-    height: 400px;
+    width: 20rem;
+    height: 20rem;
     background: rgba(0, 0, 0, .6);
-    font-size: 36px;
+    font-size: 2rem;
     color: white;
     text-align: center;
-    border-radius: 10px;
+    border-radius: 1rem;
     animation: 3s infinite ${quickspin};
   }
 
