@@ -37,18 +37,6 @@ function* pollLeaderboard() {
         leaderObject: user,
       })
     }
-<<<<<<< HEAD
-    yield delay(100);
-  }
-}
-
-// worker saga: makes the api call when watcher saga sees the action
-function* workerSaga() {
-  try {
-    // const response = yield call(fetchDog);
-    // const dog = response.data.message;
-=======
->>>>>>> 1379b6bc81d1c754d2cebdcb41a463430d106e11
 
     yield delay(5000);
   }

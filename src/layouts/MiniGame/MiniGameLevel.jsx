@@ -4,6 +4,7 @@ import QRScanner from './QRScanner.jsx'
 import { scanTag } from '../../provider/geohunterContract'
 import { imgArray }from '../../images/imageLoader'
 import { loadImg }from '../../images/imageLoader'
+import styled from 'styled-components'
 
 const StyledContainer = styled.div`
   width: 100vw;
@@ -62,6 +63,7 @@ class MiniGameLevel extends Component {
 
   render() {
     let { hideQr } = this.state
+    let { progress, user } = this.props
 
     let prog = (progress === undefined) ? 0 : progress;
     
