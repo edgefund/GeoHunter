@@ -50,9 +50,33 @@ contract GeoHunter is Ownable, Pausable {
     /// @dev Constructor
     /// @dev Initialize totals, and hardcode game with the details of 5 tags
     constructor() public {
-        totalTags = 0;
-        totalUsers = 0;
+        totalTags = 5; // Five tags are hardcoded into the constructor
+        totalUsers = 3; // Three test users are hardcoded into the constructor
         totalScans = 0;
+
+        //  Hardcoded details for a test user, index 1, who is registered but hasn't started yet
+        userIndex["did:example:1123456789abcdefghi"] = 1;
+        userList[1].userDid = "did:example:1123456789abcdefghi";
+        userList[1].username = "Test User 1";
+        userList[1].progress = 0;
+        userList[1].startTime = 0;
+        userList[1].endTime = 0;
+
+        //  Hardcoded details for a test user, index 2, who is registered and in the middle of the challenge
+        userIndex["did:example:2123456789abcdefghi"] = 2;
+        userList[1].userDid = "did:example:2123456789abcdefghi";
+        userList[1].username = "Test User 2";
+        userList[1].progress = 3;
+        userList[1].startTime = 1550370916;
+        userList[1].endTime = 0;
+
+        //  Hardcoded details for a test user, index 3, who is registered and has completed the challenge
+        userIndex["did:example:3123456789abcdefghi"] = 3;
+        userList[1].userDid = "did:example:3123456789abcdefghi";
+        userList[1].username = "Test User 3";
+        userList[1].progress = 5;
+        userList[1].startTime = 1550370916;
+        userList[1].endTime = 1550371916;
 
         //  Hardcoded details for Tag index 1 (tag UID, IPFS hash, and location latitude and longitude)
         tagIndex["16199909d0b5fd"] = 1; // Replace with actual UID
