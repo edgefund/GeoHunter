@@ -11,11 +11,6 @@ const contractReducer = (state = initialState, action) => {
       ]
     })
   }
-  // if (action.type === 'USER_LOGGED_OUT') {
-  //   return Object.assign({}, state, {
-  //     data: null
-  //   })
-  // }
 
   return state
 }

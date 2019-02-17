@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import NavBarContainer from '../NavBar/NavBarContainer.jsx'
-import LeaderTable from './LeaderTable.jsx'
+import LeaderTableContainer from './LeaderTableContainer.jsx'
 
 const StyledLeaderboard = styled.div`
   background-color: #EEF5DB;
@@ -20,7 +20,7 @@ export default class Leaderboard extends Component {
       <StyledLeaderboard>
         <NavBarContainer />
         <h1>LEADERBOARD</h1>
-        <LeaderTable />
+        <LeaderTableContainer />
       </StyledLeaderboard>
     )
   }

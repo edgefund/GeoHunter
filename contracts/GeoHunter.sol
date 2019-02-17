@@ -62,21 +62,21 @@ contract GeoHunter is Ownable, Pausable {
         userList[1].startTime = 0;
         userList[1].endTime = 0;
 
-        //  Hardcoded details for a test user, index 2, who is registered and in the middle of the challenge
+        //  Hardcoded details for a test user, index 2, who is registered and almost finished the challenge
         userIndex["did:example:2123456789abcdefghi"] = 2;
-        userList[1].userDid = "did:example:2123456789abcdefghi";
-        userList[1].username = "Test User 2";
-        userList[1].progress = 3;
-        userList[1].startTime = 1550370916;
-        userList[1].endTime = 0;
+        userList[2].userDid = "did:example:2123456789abcdefghi";
+        userList[2].username = "Test User 2";
+        userList[2].progress = 4;
+        userList[2].startTime = 1550370000;
+        userList[2].endTime = 0;
 
         //  Hardcoded details for a test user, index 3, who is registered and has completed the challenge
         userIndex["did:example:3123456789abcdefghi"] = 3;
-        userList[1].userDid = "did:example:3123456789abcdefghi";
-        userList[1].username = "Test User 3";
-        userList[1].progress = 5;
-        userList[1].startTime = 1550370916;
-        userList[1].endTime = 1550371916;
+        userList[3].userDid = "did:example:3123456789abcdefghi";
+        userList[3].username = "Test User 3";
+        userList[3].progress = 5;
+        userList[3].startTime = 1550370000;
+        userList[3].endTime = 1550371000;
 
         //  Hardcoded details for Tag index 1 (tag UID, IPFS hash, and location latitude and longitude)
         tagIndex["16199909d0b5fd"] = 1; // Replace with actual UID

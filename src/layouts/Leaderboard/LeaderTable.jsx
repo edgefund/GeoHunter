@@ -35,8 +35,10 @@ const StyledLeaderTable = styled.div`
 export default class LeaderTable extends Component {
   state = {}
 
-  sortTime = (a, b) => {
-    return a.time - b.time;
+  sortTimeAcsencing = (a, b) => {
+    let aDiff = a._endTime - a._startTime
+    let bDiff = b._endTime - b._startTime
+    return aDiff - bDiff;
   }
 
   timeString = (seconds) => {
@@ -46,12 +48,14 @@ export default class LeaderTable extends Component {
   }
 
   render() {
-    let sortedData = cellData.sort(this.sortTime)
+    let { leaderObjectArray } = this.props;
+
+    let sortedData = leaderObjectArray.sort(this.sortTimeAcsencing)
     
     const leaderCells = sortedData.map((data, index) =>
       <LeaderCell
-        name={data.name}
-        time={this.timeString(data.time)}
+        name={data._username}
+        time={this.timeString(data._endTime - data._startTime)}
         key={index}
       />
   );
