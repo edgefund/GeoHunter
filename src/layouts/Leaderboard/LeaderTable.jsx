@@ -28,7 +28,7 @@ const cellData = [
 const StyledLeaderTable = styled.div`
   width: 80vw;
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   align-items: center;
   margin: 2rem auto;
 `
@@ -53,13 +53,13 @@ export default class LeaderTable extends Component {
 
   render() {
     let { leaderObjectArray } = this.props;
-
     let sortedLeaderData = leaderObjectArray.sort(this.sortTimeAcsencing)
-    
+
     const leaderboardData = sortedLeaderData.filter(leaderData => leaderData._endTime > 0);
     const unfinishedData = sortedLeaderData.filter(leaderData => leaderData._endTime <= 0);
+
     let unfinishedLeaderboardData = unfinishedData.sort(this.sortLevelDesending)
-    
+
     const leaderCells = leaderboardData.map((data, index) =>
       <LeaderCell
         name={data._username}
@@ -84,4 +84,3 @@ export default class LeaderTable extends Component {
     )
   }
 }
-

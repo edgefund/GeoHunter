@@ -16,6 +16,7 @@ export const getCurrentUserDid = (state) => {
 export function* getIpfsImageHash() {
   const currentDid = yield select(getCurrentUserDid);
   console.log(currentDid);
+
   const tag = yield call(nextTagRequired, currentDid);
 
   console.log('What is tag?:', tag);
