@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import styled from 'styled-components'
 import { connect } from 'react-redux';
 import QRScanner from './QRScanner.jsx'
 
@@ -18,13 +17,15 @@ class MiniGameLevel extends Component {
   state = {}
 
   render() {
-    let { progress } = this.props 
+    let { progress } = this.props
 
     return (
-      <QRScanner 
-        hide={false}
-      />
-      <h1>Next Level: {progress + 1 }!</h1>
+      <div>
+        <QRScanner
+          hide={false}
+        />
+        <h1>Next Level: {parseInt(progress, 10) + 1 }!</h1>
+      </div>
     )
   }
 }
