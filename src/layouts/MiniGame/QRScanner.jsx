@@ -56,17 +56,16 @@ class QRScanner extends Component {
     render() {
         return (
             <div>
-                { (this.props.user.nextTag == 6) ? <p>Well Done!</p> :
-                    (this.state.showQRScanner ?
-                        <div>
-                            <p>Go to Level { this.props.user.nextTag }</p>
-                            <QrReader
-                                delay={this.state.delay}
-                                onError={this.handleError}
-                                onScan={this.handleScan}
-                                style={{ width: "100%" }}
-                            />
-                        </div> : <p>Successfully scanned!</p>)
+                { this.state.showQRScanner ?
+                    <div>
+                        <p>Go to Level { this.props.user.nextTag }</p>
+                        <QrReader
+                            delay={this.state.delay}
+                            onError={this.handleError}
+                            onScan={this.handleScan}
+                            style={{ width: "100%" }}
+                        />
+                    </div> : <p>Successfully scanned!</p>
                 }
             </div>
         )

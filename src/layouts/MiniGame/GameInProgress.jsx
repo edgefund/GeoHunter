@@ -9,7 +9,7 @@ class GameInProgress extends Component {
   handleScanId(id){
     let { userData } = this.props;
     scanTag(
-      userData._userDid, 
+      userData._userDid,
       userData._userName,
       id
     )
@@ -22,7 +22,6 @@ class GameInProgress extends Component {
   render() {
     return (
       <div>
-        <QRScanner scannedObject={(id) => this.handleScanId(id)}/>
         <MiniGameLevel />
       </div>
     );
