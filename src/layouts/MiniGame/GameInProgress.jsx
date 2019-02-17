@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { scanTag } from '../../provider/geohunterContract'
 import QRScanner from './QRScanner.jsx'
 
+<<<<<<< HEAD
 
 
 class GameInProgess extends Component {
@@ -12,6 +13,16 @@ class GameInProgess extends Component {
     scanTag(
       userData._userDid, 
       userData._userName,
+=======
+class GameInProgress extends Component {
+  handleScanId(id) {
+    console.log('scanned....');
+    let { userData } = this.props;
+
+    scanTag (
+      userData.did,
+      userData.name,
+>>>>>>> fdcde9d4fa9020f57f1d96b27c906463ec090636
       id
     )
   }
@@ -24,7 +35,11 @@ class GameInProgess extends Component {
     return (
       <div>
         <QRScanner scannedObject={(id) => this.handleScanId(id)}/>
+<<<<<<< HEAD
         <MiniGameLevel />
+=======
+          <img src={'https://cloudflare-ipfs.com/ipfs/' + this.props.minigame.nextImage} alt="logo" />
+>>>>>>> fdcde9d4fa9020f57f1d96b27c906463ec090636
       </div>
     );
   }
