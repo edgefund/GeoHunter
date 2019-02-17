@@ -1,9 +1,8 @@
 import { takeLatest, call, put, delay, select } from "redux-saga/effects";
-import { getTotalTags, getUser, getTotalUsers } from '../../provider/geohunterContract'
-
+import { getUser, getTotalUsers } from '../../provider/geohunterContract'
 
 export const getCurrentUserDid = (state) => {
-  if(state.user.data === null) {
+  if (state.user.data === null) {
     return 0
   }
   return state.user.data.did;
