@@ -1,7 +1,7 @@
 import { takeEvery, call, put, select } from "redux-saga/effects";
 import { nextTagRequired } from '../../provider/geohunterContract'
 
-export default function* minigameSaga() {
+export function* minigameSaga() {
     yield takeEvery('GET_IPFS_IMAGE', getIpfsImageHash)
 }
 
