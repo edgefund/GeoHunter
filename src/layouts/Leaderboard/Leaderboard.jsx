@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import NavBarContainer from '../NavBarContainer'
+import NavBarContainer from '../NavBar/NavBarContainer.jsx'
 import LeaderTable from './LeaderTable.jsx'
 
 const StyledLeaderboard = styled.div`
