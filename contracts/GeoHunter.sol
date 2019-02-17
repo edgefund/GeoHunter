@@ -264,8 +264,12 @@ contract GeoHunter is Ownable, Pausable {
         string memory _nextTagIpfsHash,
         bool _success)
         {
-        require(userIndex[_userDid] > 0, "User not registered");
-        _nextTagIndex = userList[userIndex[_userDid]].progress + 1;
+        if(userIndex[_userDid] == 0) {
+            _nextTagIndex = 1;
+        }
+        else {
+            _nextTagIndex = userList[userIndex[_userDid]].progress + 1;
+        }
         _nextTagUid = tagList[_nextTagIndex].Uid;
         _nextTagIpfsHash = tagList[_nextTagIndex].ipfsHash;
         
