@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import NavBarContainer from '../NavBar/NavBarContainer.jsx'
-import Game from './QRScanner.jsx/index.js'
 import { connect } from 'react-redux';
+
+import GameInProgress from './GameInProgress.jsx'
 
 function ShowModal(props) {
     return (
@@ -11,46 +12,41 @@ function ShowModal(props) {
     )
 }
 
-function ShowMiniGame(props) {
-    return (<div>
-        <Game />
-    </div>)
-}
-
-function ShowClock(props) {
-    return (<div>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.min.css" />
-        Clock: <div class="your-clock"></div>
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.min.js"></script>
-        <script>
-            var clock = $('.your-clock').FlipClock({
-                // ... your options here
-            });
-        </script>
-    </div>)
-}
 const mapStateToProps = (state) => {
     return {
-        user: state.user
+        user: state.user,
+        progress: state.user.data._progress,
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return {}
+    return {
+        getIPFSImage: () => dispatch({type: 'GET_IPFS_IMAGE'})
+    }
 }
 
 class MiniGame extends Component {
     state = {}
 
-    render() {
-        const isLoggedIn = this.props.user.data && this.props.user.data.name !== undefined;
+    componentDidMount() {
+        this.props.getIPFSImage();
+    }
 
-        if (!isLoggedIn) {
-            return <div><NavBarContainer /><ShowModal /></div>
-        } else {
-            return <div><NavBarContainer /><ShowMiniGame/></div>
-        }
+    render() {
+        const isLoggedIn = !!this.props.user.data;
+        return (
+            <div className="MiniGame">
+                <NavBarContainer />
+                {isLoggedIn ? (
+                    <GameInProgress
+                        nextLevel={this.props.progress + 1}
+                        userData={this.props.user.data}
+                    />
+                ) : (
+                    <ShowModal />
+                )}
+            </div>
+        )
     }
 }
 
