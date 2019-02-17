@@ -1,7 +1,5 @@
 import Web3 from 'web3';
-// const web3 = new Web3('ws://localhost:8546');
 let web3 = new Web3("http://ec2-34-220-53-37.us-west-2.compute.amazonaws.com:22000");
-// const web3 = new Web3('https://rinkeby.infura.io/v3/');
 var SimpleStorage = require('../build/contracts/SimpleStorage.json')
 let contract_address = '0xacc9e3a3a40973454a23ec57ff65ced1d23b5cb0'
 
