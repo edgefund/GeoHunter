@@ -22,7 +22,7 @@ class GameInProgess extends Component {
     return (
       <div>
         <QRScanner scannedObject={(id) => this.handleScanId(id)}/>
-
+          <img src={'https://cloudflare-ipfs.com/ipfs/' + this.props.minigame.nextImage} alt="logo" />
       </div>
     );
   }
@@ -31,6 +31,7 @@ class GameInProgess extends Component {
 const mapStateToProps = (state) => {
   return {
     userData: state.user.data,
+    minigame: state.minigame
   }
 }
 
