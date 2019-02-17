@@ -102,7 +102,21 @@ contract('Testing GeoHunter', async (accounts) => {
 
 });
 
+contract('Testing GeoHunter 2', async (accounts) => {
 
+    it('New user should progress after scanning the first item', async () => {
+        const geoHunter = await GeoHunter.deployed();
+        const expected = 1;
 
+        const result = await geoHunter.scanTag("did:ethr:0x2a3069039cbe8299c24d71c932160d22fac50b27", "Andrew Watt", "16199909d0b5fd");
+        const actual = await geoHunter.getUser(4);
 
+        assert.equal(actual[2], expected);
+    });
+
+    // _userDid:  did:ethr:0x2a3069039cbe8299c24d71c932160d22fac50b27
+    // geohunterContract.js:42 _username:  Andrew Watt
+    // geohunterContract.js:43 _tagUid:  16199909d0b5fd
+
+});
 

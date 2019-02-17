@@ -84,8 +84,6 @@ export default class NavBar extends Component {
                 GEO HUNTER
             </div>
           </Link>
-          <Link to="/leaderboard">Board</Link>
-          <Link to="/minigame">Mini-Game</Link>
           {loginButton}
         </StyledNavBar>
       </React.Fragment>

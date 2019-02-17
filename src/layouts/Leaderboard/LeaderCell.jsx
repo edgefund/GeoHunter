@@ -23,7 +23,7 @@ const StyledLeaderCell = styled.div`
     height: 20rem;
   }
 `
-const LeaderCell = ({img, name, time}) => {
+const LeaderCell = ({img, name, time, progress}) => {
   let image = img ? img : uportIcon
 
   return (
@@ -34,7 +34,7 @@ const LeaderCell = ({img, name, time}) => {
             <th>{name}</th>
           </tr>
           <tr>
-            <td>{time}</td>
+            <td>{time || progress}</td>
           </tr>
         </tbody>
       </table>
