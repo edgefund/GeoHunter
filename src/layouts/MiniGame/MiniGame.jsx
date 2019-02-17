@@ -32,7 +32,7 @@ class MiniGame extends Component {
     state = {}
 
     render() {
-        const isLoggedIn = this.props.user.data && this.props.user.data.name != undefined;
+        const isLoggedIn = this.props.user.data && this.props.user.data.name !== undefined;
 
         if (!isLoggedIn) {
             return <div><NavBarContainer /><ShowModal /></div>
