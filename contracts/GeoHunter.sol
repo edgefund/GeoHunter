@@ -156,7 +156,7 @@ contract GeoHunter is Ownable, Pausable {
         {
         require(_tagIndex <= totalTags, "Tag index cannot be greater than the current number of tags");
         uint32 newTagIndex;
-        if (tagIndex[_tagUid] == 0) {
+        if (_tagIndex == 0) {
             totalTags++;
             newTagIndex = totalTags;
             tagIndex[_tagUid] = newTagIndex;

@@ -37,25 +37,16 @@ contract('Testing GeoHunter', async (accounts) => {
      **/
     it('Should register a new tag UID to replace Tag 3', async () => {
         const geoHunter = await GeoHunter.new();
+        const expected = "x36199909d0b5fd";
 
-        await geoHunter.registerTag(3, "x6199909d0b5fd", "3mWWQSuPMS6aXCbZKpEjPHPUZN2NjB3YrhJTHsV4X3vb2t", "", "");
-        const result = await geoHunter.tagNowRegistered();
+        await geoHunter.registerTag(3, expected, "3mWWQSuPMS6aXCbZKpEjPHPUZN2NjB3YrhJTHsV4X3vb2t", "", "");
+        const actual = await geoHunter.getTag(3);
 
-        truffleAssert.eventEmitted(result, 'tagNowRegistered');
+        assert.equal(actual[0], expected);
+
     });
 
-
-    const tender = await Tender.new(123, 45);
-
-    await tender.setIpfsHash('Any string will work in here');
-    await tender.openTender();
-
-    const result = await tender.tenderIsOpen();
-
-    assert.isTrue(result);
-
-
-
+    // truffleAssert.eventEmitted(result, 'tagNowRegistered');
 
 
 });
