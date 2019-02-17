@@ -27,20 +27,10 @@ class QRScanner extends Component {
 
     handleScan(data) {
         if (data) {
-            let { scannedObject } = this.props
             this.props.gotQRData(data);
-            const tagId = 0;
-
-            let urlSplit = data.split('/')
-            if(urlSplit.length) {
-                tagId = urlSplit(urlSplit.length - 1)
-                scannedObject(tagId)
-            } else {
-            // TODO invalid data
-            return
-            }
         }
-        return
+
+        return;
     }
 
     handleError(err) {
@@ -48,11 +38,10 @@ class QRScanner extends Component {
     }
 
     render() {
-        // Need to send this prop
-        let { scannedObject, hide } = this.props
+        let { hide } = this.props
 
         let displayType = 'inherit'
-        if(hide===true) {
+        if(hide === true) {
             displayType = 'none'
         }
 

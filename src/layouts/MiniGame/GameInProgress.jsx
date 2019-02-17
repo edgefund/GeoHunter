@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { scanTag } from '../../provider/geohunterContract'
 import QRScanner from './QRScanner.jsx'
-import MiniGameLevel from './MiniGameLevel.jsx'
 
-class GameInProgess extends Component {
-  handleScanId(id){
+class GameInProgress extends Component {
+  handleScanId(id) {
     let { userData } = this.props;
-    scanTag(
-      userData._userDid,
-      userData._userName,
+
+    scanTag (
+      userData.did,
+      userData.name,
       id
     )
   }
@@ -38,7 +38,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getIPFSImage: () => dispatch({type: 'GET_IPFS_IMAGE'})
-}
+  }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(GameInProgess);
+export default connect(mapStateToProps, mapDispatchToProps)(GameInProgress);
