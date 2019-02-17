@@ -5,7 +5,6 @@ import QRScanner from './QRScanner.jsx'
 import MiniGameLevel from './MiniGameLevel.jsx'
 
 class GameInProgess extends Component {
-
   handleScanId(id){
     let { userData } = this.props;
     scanTag(
@@ -13,6 +12,10 @@ class GameInProgess extends Component {
       userData._userName,
       id
     )
+  }
+
+  componentDidMount() {
+    this.props.getIPFSImage();
   }
 
   render() {
@@ -25,7 +28,6 @@ class GameInProgess extends Component {
   }
 }
 
-
 const mapStateToProps = (state) => {
   return {
     userData: state.user.data,
@@ -33,7 +35,9 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-
+  return {
+    getIPFSImage: () => dispatch({type: 'GET_IPFS_IMAGE'})
+}
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GameInProgess);
