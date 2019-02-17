@@ -56,8 +56,8 @@ export default class LeaderTable extends Component {
 
     let sortedLeaderData = leaderObjectArray.sort(this.sortTimeAcsencing)
     
-    const leaderboardData = sortedLeaderData.filter(leaderData => leaderData.bDiff > 0);
-    const unfinishedData = sortedLeaderData.filter(leaderData => leaderData.bDiff <= 0);
+    const leaderboardData = sortedLeaderData.filter(leaderData => leaderData._endTime > 0);
+    const unfinishedData = sortedLeaderData.filter(leaderData => leaderData._endTime <= 0);
     let unfinishedLeaderboardData = unfinishedData.sort(this.sortLevelDesending)
     
     const leaderCells = leaderboardData.map((data, index) =>
