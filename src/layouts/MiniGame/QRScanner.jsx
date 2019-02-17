@@ -31,7 +31,7 @@ class QRScanner extends Component {
             this.props.gotQRData(data);
             const tagId = 0;
 
-            let urlSplit = scannedObject.split('/')
+            let urlSplit = data.split('/')
             if(urlSplit.length) {
                 tagId = urlSplit(urlSplit.length - 1)
                 scannedObject(tagId)
@@ -49,14 +49,19 @@ class QRScanner extends Component {
 
     render() {
         // Need to send this prop
-        let { scannedObject } = this.props
+        let { scannedObject, hide } = this.props
+
+        let displayType = 'inherit'
+        if(hide===true) {
+            displayType = 'none'
+        }
 
         return (
             <QrReader
                 delay={this.state.delay}
                 onError={this.handleError}
                 onScan={this.handleScan}
-                style={{ width: "100%" }}
+                style={{ width: "100%", display: displayType }}
             />
         )
     }

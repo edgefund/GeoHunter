@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux';
+import QRScanner from './QRScanner.jsx'
 
 const mapStateToProps = (state) => {
   return {
@@ -20,7 +21,10 @@ class MiniGameLevel extends Component {
     let { progress } = this.props 
 
     return (
-      <h1>Next Level: {progress + 1 }</h1>
+      <QRScanner 
+        hide={false}
+      />
+      <h1>Next Level: {progress + 1 }!</h1>
     )
   }
 }
