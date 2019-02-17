@@ -8,12 +8,16 @@ const mapStateToProps = (state) => {
   return {
     user: state.user.data,
     progress: state.user.data._progress,
+    minigame: state.minigame
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {}
-}
+    return {
+      getIPFSImage: () => dispatch({type: 'GET_IPFS_IMAGE'})
+    }
+  }
+  
 
 class MiniGameLevel extends Component {
   state = {
@@ -29,6 +33,11 @@ class MiniGameLevel extends Component {
     })
   }
 
+  componentDidMount() {
+    this.props.getIPFSImage();
+  }
+
+
   render() {
     let { hideQr } = this.state
 
@@ -38,6 +47,7 @@ class MiniGameLevel extends Component {
           hide={hideQr}
           scannedObject={(id) => this.scannedId(id)}
         />
+        <img src={'https://cloudflare-ipfs.com/ipfs/' + this.props.minigame.nextImage} alt="logo" />
       </div>
     )
   }
