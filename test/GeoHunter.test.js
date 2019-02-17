@@ -19,4 +19,22 @@ contract('Testing GeoHunter', async (accounts) => {
     });
 
 
+    /* Tests the functionality of the constructor.
+     * Simply check that the params are stored.
+     **/
+    it('Should register the hard coded tag index for the UID for Tag 2', async () => {
+        const geoHunter = await GeoHunter.new();
+        const expected = 2;
+        let actual;
+
+        const tag4 = await geoHunter.tagList.call(4);
+        actual = tag4.Uid;
+
+        assert.equal(actual, expected);
+    });
+
+
+
+
+
 });
