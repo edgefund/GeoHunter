@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './NavBar.css'
 import styled from 'styled-components'
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const StyledNavBar = styled.div`
   display: flex;
@@ -89,7 +89,6 @@ export default class NavBar extends Component {
 
     return (
       <StyledNavBar>
-        
         <Link to="/">
           <div className="h1">
               GEO HUNTER
@@ -100,7 +99,3 @@ export default class NavBar extends Component {
     )
   }
 }
-<<<<<<< HEAD
- 
-=======
->>>>>>> a6284aa8179bacd766af270b607da207309d54d2
