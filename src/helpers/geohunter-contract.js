@@ -18,7 +18,6 @@ export async function registerUser(_userDid, _username) {
 }
 
 export function scanTag(_userDid, _username, _tagUid) {
-  console.log('scanning...')
   // let tx = contract.methods.scanTag(_userDid, _username, _tagUid);
   // return sendTx(tx);
 }

@@ -46,23 +46,21 @@ class Game extends Component {
         console.error(err);
     }
 
-    componentDidMount() {
-        console.log(scanTag);
-    }
-
     render() {
         return (
             <div>
-                <div>
-                    Go to Level {this.props.user.nextTag}
-                </div>
+                { this.state.showQrScanner ?
+                    <div>
+                        Go to Level {this.props.user.nextTag}
+                    </div> : null
+                }
                 <div>
                     { this.state.showQrScanner ?
                         <QrReader
                             delay={this.state.delay}
                             onError={this.handleError}
                             onScan={this.handleScan}
-                            style={{ width: 500 }}
+                            style={{ width: "100%" }}
                         /> : <p>Successfully Scanned!</p>
                     }
                 </div>
