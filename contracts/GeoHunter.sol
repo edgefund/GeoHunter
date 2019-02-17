@@ -17,6 +17,7 @@ contract GeoHunter is Ownable, Pausable {
     event balanceNowUpdated(uint256 _newBalance);
     event tagNowRegistered(uint32 _tagIndex, string _tagUid, string _ipfsHash, string _lat, string _long);
     event userNowRegistered(string _userDid, string _username);
+    event userNowReset(string _userDid);
     event tagNowScanned(string userDid, string username, string tagUid, uint timestamp);
 
     // Structs & Mappings
@@ -194,6 +195,22 @@ contract GeoHunter is Ownable, Pausable {
         userList[userIndex[_userDid]].endTime = 0;
 
         emit userNowRegistered(_userDid, _username);
+        return true;
+    }
+
+    /// @dev Resets a user
+    /// @param _userDid User's uPort DID code
+    function resetUser(string memory _userDid)
+        public
+        returns (bool)
+        {
+        require(userIndex[_userDid] > 0, "User not registered");
+
+        userList[userIndex[_userDid]].progress = 0;
+        userList[userIndex[_userDid]].startTime = 0;
+        userList[userIndex[_userDid]].endTime = 0;
+
+        emit userNowReset(_userDid);
         return true;
     }
 
