@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import styled from 'styled-components'
 import NavBarContainer from '../NavBar/NavBarContainer.jsx'
 import Game from './QRScanner.jsx/index.js'
 import { connect } from 'react-redux';
@@ -18,8 +17,6 @@ function ShowMiniGame(props) {
     </div>)
 }
 
-<<<<<<< HEAD
-=======
 function ShowClock(props) {
     return (<div>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.min.css" />
@@ -33,8 +30,6 @@ function ShowClock(props) {
         </script>
     </div>)
 }
-
->>>>>>> af53283326d592d03146a652b46b0184eff577cb
 const mapStateToProps = (state) => {
     return {
         user: state.user
@@ -54,7 +49,7 @@ class MiniGame extends Component {
         if (!isLoggedIn) {
             return <div><NavBarContainer /><ShowModal /></div>
         } else {
-            return <div><NavBarContainer /><  /></div>
+            return <div><NavBarContainer /><ShowMiniGame/></div>
         }
     }
 }
