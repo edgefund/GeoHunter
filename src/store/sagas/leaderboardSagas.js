@@ -29,7 +29,7 @@ function* pollLeaderboard() {
       if (user._userDid === currentDid) {
         yield put({
           type: 'USER_NEXT_TAG',
-          nextTag: user._progress + 1,
+          nextTag: parseInt(user._progress, 10) + 1,
         })
       }
       yield put({
