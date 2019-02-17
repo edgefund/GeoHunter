@@ -39,11 +39,10 @@ export default class MiniGame extends Component {
                             delay={this.state.delay}
                             onError={this.handleError}
                             onScan={this.handleScan}
-                            style={{ width: "100%" }}
+                            style={{ width: 250 }}
                         /> :
                         this.state.result
                     }
-                    <p>{this.state.result}</p>
                 </div>
             </div>
         );
