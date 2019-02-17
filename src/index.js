@@ -12,7 +12,7 @@ import MiniGame from './layouts/MiniGame/MiniGame'
 import './index.css';
 
 // Redux Store
-import store from './store'
+import store from './store/store'
 
 ReactDOM.render((
     <Provider store={store}>

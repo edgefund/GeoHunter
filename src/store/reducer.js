@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
-import userReducer from './user/userReducer'
-import contractReducer from './store/contractReducer'
-import web3Reducer from './store/web3Reducer'
-import minigameReducer from './store/minigameReducer'
+import userReducer from '../user/userReducer'
+import contractReducer from './contractReducer'
+import web3Reducer from './web3Reducer'
+import minigameReducer from './minigameReducer'
 
 const reducer = combineReducers({
   routing: routerReducer,
