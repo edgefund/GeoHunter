@@ -31,18 +31,6 @@ class QRScanner extends Component {
         if (data) {
             let { scannedObject } = this.props;
             this.props.gotQRData(data);
-<<<<<<< HEAD
-            const tagId = 0;
-
-            let urlSplit = data.split('/')
-            if(urlSplit.length) {
-                tagId = urlSplit([urlSplit.length - 1])
-                scannedObject(tagId)
-            } else {
-            // TODO invalid data
-            return
-            }
-=======
             this.setState({ showQRScanner: false }, async () => await scanTag (
                 this.props.user.data.did,
                 this.props.user.data.name,
@@ -52,7 +40,6 @@ class QRScanner extends Component {
             setTimeout(() => {
                 this.setState({ showQRScanner: true })
             }, 3000);
->>>>>>> fdcde9d4fa9020f57f1d96b27c906463ec090636
         }
 
         return;
