@@ -10,9 +10,9 @@ const minigameReducer = (state = initialState, action) => {
         });
     }
 
-    if (action.type === 'GOT_CHAIN_DATA') {
+    if (action.type === 'GOT_IPFS_IMAGE') {
         return Object.assign({}, state, {
-            chainData: action.payload
+            nextImage: action.payload
         });
     }
 

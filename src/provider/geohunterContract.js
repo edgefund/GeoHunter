@@ -51,6 +51,7 @@ export async function nextTagRequired(_userDid) {
     _nextTagIndex: x._nextTagIndex,
     _nextTagUid: x.providerEndpoint_nextTagUid,
     _success: x._success,
+    _ipfsHash: x._ipfsHash
   };
   return result;
 }
