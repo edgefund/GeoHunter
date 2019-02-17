@@ -13,7 +13,6 @@ class AppContainer extends Component {
   }
 
   initilizeStore() {
-    console.log(quorumConfig.providerEndpoint)
     this.props.initWeb3(new Web3(quorumConfig.providerEndpoint))
 
     for(let contract of web3Options.contracts) {
