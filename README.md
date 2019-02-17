@@ -6,8 +6,6 @@ _Authors: Bryce Doganer, Andy Watt, Gareth Oates, Colin McCrae, Lucas Henning_
 
 ## Project Specs
 ### Repo Location
-[The final project is stored here on GitLab](https://gitlab.com/ethdenver/project "GitLab - ETHdenver Project: GeoHunter")
-
 [The final project is stored here on GitHub](https://github.com/edgefund/GeoHunter "GitHub - ETHdenver Project: GeoHunter")
 
 
@@ -29,8 +27,6 @@ The following steps will allow the project to be evaluated. The terminal command
 
 1. Navigate your development folder and clone the project repo from Github. The command below will create a folder 'project' in your chosen development folder. 
 
-   $ `git clone https://gitlab.com/ethdenver/project`
-   
    $ `git clone https://github.com/edgefund/GeoHunter`
    
 2. Go into the new folder 
