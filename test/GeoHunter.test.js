@@ -23,7 +23,7 @@ contract('Testing GeoHunter', async (accounts) => {
      **/
     it('Should register the hard coded tag IPFS hash Tag 2', async () => {
         const geoHunter = await GeoHunter.deployed();
-        const expected = "2mWWQSuPMS6aXCbZKpEjPHPUZN2NjB3YrhJTHsV4X3vb2t";
+        const expected = "QmUmm1eWhQQzekyUqeYztzvCTSeDWYp1SvFRK2pvSjuubn";
         let actual;
 
         const tag2 = await geoHunter.tagList.call(2);
@@ -39,7 +39,7 @@ contract('Testing GeoHunter', async (accounts) => {
         const geoHunter = await GeoHunter.deployed();
         const expected = "x36199909d0b5fd";
 
-        await geoHunter.registerTag(3, expected, "3mWWQSuPMS6aXCbZKpEjPHPUZN2NjB3YrhJTHsV4X3vb2t", "", "");
+        await geoHunter.registerTag(3, expected, "QmZQx3e4mfD2gd1VyjivqjZnuhGLMTqWcRYw1DxqqBQejz", "", "");
         const actual = await geoHunter.getTag(3);
 
         assert.equal(actual[0], expected);
@@ -48,7 +48,7 @@ contract('Testing GeoHunter', async (accounts) => {
     it('Should emit an event when a new tag is added', async () => {
         const geoHunter = await GeoHunter.deployed();
 
-        const result = await geoHunter.registerTag(0, "66199909d0b5fd", "3mWWQSuPMS6aXCbZKpEjPHPUZN2NjB3YrhJTHsV4X3vb2t", "", "");
+        const result = await geoHunter.registerTag(0, "66199909d0b5fd", "QmZQx3e4mfD2gd1VyjivqjZnuhGLMTqWcRYw1DxqqBQejz", "", "");
 
         truffleAssert.eventEmitted(result, 'tagNowRegistered');
     });
