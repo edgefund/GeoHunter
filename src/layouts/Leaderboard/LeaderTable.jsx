@@ -2,29 +2,6 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import LeaderCell from './LeaderCell.jsx'
 
-const cellData = [
-  {
-    name: "Bob",
-    time: "150"
-  },
-  {
-    name: "Alice",
-    time: "2000"
-  },
-  {
-    name: "Craig",
-    time: "300"
-  },
-  {
-    name: "Derrel",
-    time: "1000"
-  },
-  {
-    name: "Tom",
-    time: "600"
-  },
-]
-
 const StyledLeaderTable = styled.div`
   width: 80vw;
   display: flex;
@@ -45,9 +22,13 @@ export default class LeaderTable extends Component {
     return b._progress - a._progress;
   }
 
-  timeString = (seconds) => {
+  timeString = (nanoseconds) => {
+    let seconds = nanoseconds / 10 ** 9
     let secs = seconds % 60;
     let mins = Math.floor(seconds/60);
+
+    secs = Math.round(secs, 2);
+
     return `${mins}:${secs < 10 ? `0${secs}` : secs}`
   }
 
