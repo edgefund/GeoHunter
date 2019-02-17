@@ -96,7 +96,7 @@ contract GeoHunter is Ownable, Pausable {
         //  Hardcoded details for Tag index 3 (tag UID, IPFS hash, and location latitude and longitude)
         tagIndex["36199909d0b5fd"] = 3; // Replace with actual UID
         tagList[3].Uid = "36199909d0b5fd"; // Replace with actual UID
-        tagList[3].ipfsHash = "QmZQx3e4mfD2gd1VyjivqjZnuhGLMTqWcRYw1DxqqBQejz"; // Replace with actual IPFS hash
+        tagList[3].ipfsHash = "QmZQx3e4mfD2st user 2 should get an endtime after scanning the fifth (final) itgd1VyjivqjZnuhGLMTqWcRYw1DxqqBQejz"; // Replace with actual IPFS hash
         tagList[3].lat = "";
         tagList[3].long = "";
 
@@ -233,10 +233,10 @@ contract GeoHunter is Ownable, Pausable {
         if (keccak256(abi.encode(_tagUid)) == keccak256(abi.encode(nextTagUid))) {
             userList[userIndex[_userDid]].progress++; // Progress user if they have scanned the next tag
             if (userList[userIndex[_userDid]].progress == 1) {
-                userList[userIndex[_userDid]].startTime == block.timestamp; // If tag is index 1 then record user's start time
+                userList[userIndex[_userDid]].startTime = block.timestamp; // If tag is index 1 then record user's start time
             }
             if (userList[userIndex[_userDid]].progress == 5) {
-                userList[userIndex[_userDid]].endTime == block.timestamp; // If tag is index 5 then record user's end time
+                userList[userIndex[_userDid]].endTime = block.timestamp; // If tag is index 5 then record user's end time
             }
         }
 

@@ -97,7 +97,7 @@ contract('Testing GeoHunter', async (accounts) => {
         const result = await geoHunter.scanTag("did:example:2123456789abcdefghi", "Test User 2", "56199909d0b5fd");
         const actual = await geoHunter.getUser(2);
 
-        assert.isTrue(actual[4] != "");
+        assert.isTrue(actual[4] != 0);
     });
 
 });
