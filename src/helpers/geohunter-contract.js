@@ -3,8 +3,22 @@ import { sendTx } from './signSendTx';
 
 const web3 = new Web3("http://ec2-34-220-53-37.us-west-2.compute.amazonaws.com:22000");
 const GeoHunter = require('../../build/contracts/GeoHunter.json');
-const contract_address = '';
+const contract_address = '0x8707f505ef4501fda25fd36c75d2b0c6315c6868';
 const contract = web3.eth.Contract(GeoHunter.abi, contract_address);
+
+const dappId = '9d89626b-fa8e-45a5-90c5-34118bbc93da';
+const networkId = '10'
+
+window.web3 = web3;
+
+var bncAssistConfig = {
+    dappId: dappId,
+    networkId: networkId
+};
+
+var assistInstance = window.assist.init(bncAssistConfig);
+
+var myDecoratedContract = assistInstance.Contract(contract);
 
 // returns Promise<TransactionReceipt>
 export async function registerTag(_tagIndex, _tagUid, _ipfsHash, _lat, _long )  {
@@ -19,8 +33,8 @@ export async function registerUser(_userDid, _username) {
 
 export function scanTag(_userDid, _username, _tagUid) {
   console.log('scanning...')
-  // let tx = contract.methods.scanTag(_userDid, _username, _tagUid);
-  // return sendTx(tx);
+  let tx = myDecoratedContract.methods.scanTag(_userDid, _username, _tagUid);
+  return sendTx(tx);
 }
 
 // returns Promise<{_nextTagIndex, _nextTagUid, _success}>
