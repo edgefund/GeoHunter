@@ -19,7 +19,7 @@ function ShowMiniGame(props) {
 }
 
 function ShowClock(props) {
-    return (<div>          
+    return (<div>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.min.css" />
         Clock: <div class="your-clock"></div>
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

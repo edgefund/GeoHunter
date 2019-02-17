@@ -1,4 +1,5 @@
-import { leaderboardSagas } from './leaderboardSagas'
+import { leaderboardSagas } from './leaderboardSagas';
+import { minigameSaga } from './minigameSaga';
 import { all } from "redux-saga/effects";
 
 // notice how we now only export the rootSaga
@@ -6,5 +7,6 @@ import { all } from "redux-saga/effects";
 export default function* rootSaga() {
   yield all([
     leaderboardSagas(),
+    minigameSaga(),
   ])
 }
