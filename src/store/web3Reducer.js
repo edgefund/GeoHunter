@@ -12,7 +12,6 @@ const web3Reducer = (state = initialState, action) => {
   }
 
   if (action.type === 'DISCONNECT_WEB3') {
-    console.log('Initializing web3')
     return Object.assign({}, state, {
       web3: null,
       initalized: false,

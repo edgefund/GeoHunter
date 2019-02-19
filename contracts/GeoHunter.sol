@@ -5,7 +5,7 @@ import "../node_modules/openzeppelin-solidity/contracts/lifecycle/Pausable.sol";
 
 /// @title ETHdenver 2019 Project: GeoHunter
 /// @dev Contract Project will inherit the contracts Ownable and Pausable from the OpenZeppelin library
-/// @dev Pausable is a circuit breaker which blocks all contract functions expect withdrawal by the owner
+/// @dev Pausable is a circuit breaker which blocks all contract functions except withdrawal by the owner
 contract GeoHunter is Ownable, Pausable {
 
     // Global variables
@@ -15,10 +15,21 @@ contract GeoHunter is Ownable, Pausable {
 
     // Events
     event balanceNowUpdated(uint256 _newBalance);
-    event tagNowRegistered(uint32 _tagIndex, string _tagUid, string _ipfsHash, string _lat, string _long);
+    event tagNowRegistered(
+        uint32 _tagIndex,
+        string _tagUid,
+        string _ipfsHash,
+        string _lat,
+        string _long
+    );
     event userNowRegistered(string _userDid, string _username);
     event userNowReset(string _userDid);
-    event tagNowScanned(string userDid, string username, string tagUid, uint timestamp);
+    event tagNowScanned(
+        string userDid,
+        string username,
+        string tagUid,
+        uint timestamp
+    );
 
     // Structs & Mappings
     struct Tag {
@@ -27,6 +38,7 @@ contract GeoHunter is Ownable, Pausable {
         string lat;
         string long;
     }
+
     mapping (string => uint32) private tagIndex; // 0 returned means tag UID is unregistered
     mapping (uint32 => Tag) public tagList; // Since index 0 means tag UID is unregistered, index 1 to 5 will be the five game tags
 
@@ -37,6 +49,7 @@ contract GeoHunter is Ownable, Pausable {
         uint startTime;
         uint endTime;
     }
+
     mapping (string => uint32) private userIndex; // 0 returned means user DID is unregistered
     mapping (uint32 => User) public userList; // Since index 0 means user DID is unregistered, 1st user is index 1
 
@@ -46,6 +59,7 @@ contract GeoHunter is Ownable, Pausable {
         string tagUid;
         uint timestamp;
     }
+
     mapping (uint32 => Scan) public scanList;
 
     /// @dev Constructor
@@ -53,7 +67,7 @@ contract GeoHunter is Ownable, Pausable {
     constructor() public {
         totalTags = 5; // Five tags are hardcoded into the constructor
         // totalUsers = 3; // Three test users are hardcoded into the constructor
-        totalUsers = 0; 
+        totalUsers = 0;
         totalScans = 0;
 
         // //  Hardcoded details for a test user, index 1, who is registered but hasn't started yet
@@ -121,20 +135,15 @@ contract GeoHunter is Ownable, Pausable {
     }
 
     /// @dev The owner can add ETH to the contract when the contract is not paused
-    function addBalance()
-        public
-        payable
-        onlyOwner
-        whenNotPaused {
+    function addBalance() public payable onlyOwner whenNotPaused
+    {
         emit balanceNowUpdated(address(this).balance);
     }
 
     /// @dev The owner can withdraw ETH from the contract when the contract is not paused
     /// @param amount Value to be withdrawn in wei
-    function withdrawBalance (uint256 amount)
-        public
-        onlyOwner
-        whenNotPaused {
+    function withdrawBalance (uint256 amount) public onlyOwner whenNotPaused
+    {
         msg.sender.transfer(amount);
         emit balanceNowUpdated(address(this).balance);
     }
@@ -146,24 +155,27 @@ contract GeoHunter is Ownable, Pausable {
     /// @param _ipfsHash IPFS hash associated with the tag (could be a hash of a picture of the tag location)
     /// @param _lat Location (latitude) of tag
     /// @param _long Location (longitude) of tag
-    function registerTag(
+    function registerTag (
         uint32 _tagIndex,
         string memory _tagUid,
         string memory _ipfsHash,
         string memory _lat,
-        string memory _long)
-        public
-        onlyOwner
-        returns (bool)
-        {
-        require(_tagIndex <= totalTags, "Tag index cannot be greater than the current number of tags");
+        string memory _long
+    ) public onlyOwner returns (bool)
+    {
+        require(
+            _tagIndex <= totalTags,
+            "Tag index cannot be greater than the current number of tags"
+        );
+
         uint32 newTagIndex;
+
         if (_tagIndex == 0) {
             totalTags++;
             newTagIndex = totalTags;
             tagIndex[_tagUid] = newTagIndex;
-        }
-        else {
+
+        } else {
             newTagIndex = _tagIndex;
         }
 
@@ -173,6 +185,7 @@ contract GeoHunter is Ownable, Pausable {
         tagList[newTagIndex].long = _long;
 
         emit tagNowRegistered(_tagIndex, _tagUid, _ipfsHash, _lat, _long);
+
         return true;
     }
 
@@ -181,11 +194,11 @@ contract GeoHunter is Ownable, Pausable {
     /// @param _username User's uPort username
     function registerUser(
         string memory _userDid,
-        string memory _username)
-        public
-        returns (bool)
-        {
+        string memory _username
+    ) public returns (bool)
+    {
         require(userIndex[_userDid] == 0, "User already registered");
+
         totalUsers++;
         userIndex[_userDid] = totalUsers;
 
@@ -196,15 +209,14 @@ contract GeoHunter is Ownable, Pausable {
         userList[userIndex[_userDid]].endTime = 0;
 
         emit userNowRegistered(_userDid, _username);
+
         return true;
     }
 
     /// @dev Resets a user
     /// @param _userDid User's uPort DID code
-    function resetUser(string memory _userDid)
-        public
-        returns (bool)
-        {
+    function resetUser(string memory _userDid) public returns (bool)
+    {
         require(userIndex[_userDid] > 0, "User not registered");
 
         userList[userIndex[_userDid]].progress = 0;
@@ -212,6 +224,7 @@ contract GeoHunter is Ownable, Pausable {
         userList[userIndex[_userDid]].endTime = 0;
 
         emit userNowReset(_userDid);
+
         return true;
     }
 
@@ -222,22 +235,24 @@ contract GeoHunter is Ownable, Pausable {
     function scanTag(
         string memory _userDid,
         string memory _username,
-        string memory _tagUid)
-        public
-        returns (bool)
-        {
+        string memory _tagUid
+    ) public returns (bool)
+    {
         if (userIndex[_userDid] == 0) {
-            require(registerUser(_userDid, _username), "User already registered"); // Register user if not already registered
+            require(registerUser(_userDid, _username), "User already registered");
         }
 
         string memory nextTagUid = tagList[userList[userIndex[_userDid]].progress + 1].Uid;
+
         if (keccak256(abi.encode(_tagUid)) == keccak256(abi.encode(nextTagUid))) {
-            userList[userIndex[_userDid]].progress++; // Progress user if they have scanned the next tag
+            userList[userIndex[_userDid]].progress++;
+
             if (userList[userIndex[_userDid]].progress == 1) {
-                userList[userIndex[_userDid]].startTime = block.timestamp; // If tag is index 1 then record user's start time
+                userList[userIndex[_userDid]].startTime = block.timestamp;
             }
+
             if (userList[userIndex[_userDid]].progress == 5) {
-                userList[userIndex[_userDid]].endTime = block.timestamp; // If tag is index 5 then record user's end time
+                userList[userIndex[_userDid]].endTime = block.timestamp;
             }
         }
 
@@ -256,21 +271,20 @@ contract GeoHunter is Ownable, Pausable {
     /// @param _userDid User's uPort DID code
     /// @param _nextTagIndex The index number for the next tag the user requires (1 to 5; 6 means user is done)
     /// @param _nextTagUid Tag UID code for the next tag the user requires
-    function nextTagRequired(string memory _userDid)
-        public
-        view
-        returns (
+    function nextTagRequired(string memory _userDid) public view returns (
         uint32 _nextTagIndex,
         string memory _nextTagUid,
         string memory _nextTagIpfsHash,
-        bool _success)
-        {
-        if(userIndex[_userDid] == 0) {
+        bool _success
+    )
+    {
+        if (userIndex[_userDid] == 0) {
             _nextTagIndex = 1;
-        }
-        else {
+
+        } else {
             _nextTagIndex = userList[userIndex[_userDid]].progress + 1;
         }
+
         _nextTagUid = tagList[_nextTagIndex].Uid;
         _nextTagIpfsHash = tagList[_nextTagIndex].ipfsHash;
 
@@ -279,45 +293,34 @@ contract GeoHunter is Ownable, Pausable {
 
     /// @dev Returns the current total number of tags registered
     /// @param _totalTags Current total number of tags registered
-    function getTotalTags()
-        public
-        view
-        returns (uint32 _totalTags)
-        {
+    function getTotalTags() public view returns (uint32 _totalTags)
+    {
         _totalTags = totalTags;
     }
 
     /// @dev Returns the current total number of users registered
     /// @param _totalUsers Current total number of users registered
-    function getTotalUsers()
-        public
-        view
-        returns (uint32 _totalUsers)
-        {
+    function getTotalUsers() public view returns (uint32 _totalUsers)
+    {
         _totalUsers = totalUsers;
     }
 
     /// @dev Returns the current total number of scans
     /// @param _totalScans Current total number of scans
-    function getTotalScans()
-        public
-        view
-        returns (uint32 _totalScans)
-        {
+    function getTotalScans() public view returns (uint32 _totalScans)
+    {
         _totalScans = totalScans;
     }
 
     /// @dev Returns the requested user data by index
-    function getUser(uint32 _userIndex)
-        public
-        view
-        returns (
+    function getUser(uint32 _userIndex) public view returns (
         string memory _userDid,
         string memory _username,
         uint8 _progress,
         uint _startTime,
-        uint _endTime)
-        {
+        uint _endTime
+    )
+    {
         _userDid = userList[_userIndex].userDid;
         _username = userList[_userIndex].username;
         _progress = userList[_userIndex].progress;
@@ -326,15 +329,13 @@ contract GeoHunter is Ownable, Pausable {
     }
 
     /// @dev Returns the requested tag data by index
-    function getTag(uint32 _tagIndex)
-        public
-        view
-        returns (
+    function getTag(uint32 _tagIndex) public view returns (
         string memory _Uid,
         string memory _ipfsHash,
         string memory _lat,
-        string memory _long)
-        {
+        string memory _long
+    )
+    {
         _Uid = tagList[_tagIndex].Uid;
         _ipfsHash = tagList[_tagIndex].ipfsHash;
         _lat = tagList[_tagIndex].lat;
@@ -342,19 +343,16 @@ contract GeoHunter is Ownable, Pausable {
     }
 
     /// @dev Returns the requested scan data by index
-    function getScan(uint32 _scanIndex)
-        public
-        view
-        returns (
+    function getScan(uint32 _scanIndex) public view returns (
         string memory _userDid,
         string memory _username,
         string memory _tagUid,
-        uint _timestamp)
-        {
+        uint _timestamp
+    )
+    {
         _userDid = scanList[_scanIndex].userDid;
         _username = scanList[_scanIndex].username;
         _tagUid = scanList[_scanIndex].tagUid;
         _timestamp = scanList[_scanIndex].timestamp;
     }
-
 }

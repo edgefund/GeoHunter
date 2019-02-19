@@ -1,3 +1,5 @@
+import { quorumConfig } from './src/provider/quorumConfig';
+
 const HDWalletProvider = require('truffle-hdwallet-provider');
 
 module.exports = {
@@ -7,10 +9,10 @@ module.exports = {
   networks: {
     development: {
       provider: new HDWalletProvider(
-        "15E0DB619B64C1E175CE0F0F05F21F19BFCAF2B1DDF1C47C88F7C778CFD47AF5",
-        "https://geohunter.duckdns.org:1337/"
+        quorumConfig.privateKey,
+        quorumConfig.providerEndpoint
       ),
-      network_id: "10",
+      network_id: quorumConfig.networkId.toString(),
       gas: 0,
       gasPrice: 0
     },
